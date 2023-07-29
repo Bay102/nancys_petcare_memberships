@@ -4,7 +4,8 @@ export const Home = () => {
 
    return (
       <div className="mainContainer">
-         <NavBar />
+         <NavBar /> 
+         
       </div>
    )
 }
