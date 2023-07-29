@@ -1,0 +1,26 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+} */
+
+body {
+  max-width: 1200px;
+  padding: 0;
+  margin: auto;
+}
+
+/* .mainContainer {
+  width: 1200px;
+  height: 100vh;
+  border: 1px solid white;
+  margin: auto;
+} */
+
+
+/* @media (max-width: 390px) {
+   .mainContainer {
+    width: 380px;
+   }
+} */

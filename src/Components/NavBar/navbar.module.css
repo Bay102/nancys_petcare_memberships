@@ -1,0 +1,23 @@
+.navContainer {
+   width: 100%;
+   border: 1px solid blue;
+}
+
+.navList {
+   display: flex;
+   flex-direction: column;
+   gap: 20px ;
+   list-style: none;
+   text-align: center;
+}
+
+.navList li {
+   width: 200px;
+   margin: auto;
+}
+
+.navList li:hover {
+   background-color: lightpink;
+   cursor: pointer;
+   color: black;
+}

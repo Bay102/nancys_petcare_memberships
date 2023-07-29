@@ -1,0 +1,30 @@
+.signUp_container {
+   width: 100%;
+   height: 100vh;
+   border: 1px solid white;
+   /* background-color: white; */
+   margin: auto;
+   color: aliceblue;
+}
+
+.inputsContainer {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+   width: 300px;
+   height: 350px;
+   border: 1px solid white;
+   border-radius: 10px;
+   margin: 20px auto;
+}
+
+.inputsContainer h3 {
+   text-align: center;
+ }
+
+ .inputsContainer input {
+   width: 90%;
+   height: 30px;
+ }
