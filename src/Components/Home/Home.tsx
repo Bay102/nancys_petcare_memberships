@@ -1,11 +1,12 @@
-import { NavBar } from "../NavBar/NavBar"
+import { NavBar } from '../NavBar/NavBar';
+import { useUserProvider } from '../Providers/User.provider';
 
 export const Home = () => {
-
-   return (
-      <div className="mainContainer">
-         <NavBar /> 
-         
-      </div>
-   )
-}
+  const { user } = useUserProvider();
+  return (
+    <div className="mainContainer">
+      <NavBar />
+      <div>{user?.email}</div>
+    </div>
+  );
+};

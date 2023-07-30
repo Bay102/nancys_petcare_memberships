@@ -6,11 +6,9 @@ export const NavBar = () => {
     <div className={styles.navContainer}>
       <nav>
         <ul className={styles.navList}>
-          <Link to='/'>Home</Link>
-          <Link to='/login'>Login</Link>
-          <Link to='/signUp'>Sign Up</Link>
-     
-     
+          <Link className={styles.navLink} to='/'>Home</Link>
+          <Link className={styles.navLink} to='/login'>Login</Link>
+          <Link className={styles.navLink} to='/signUp'>Sign Up</Link>
         </ul>
       </nav>
     </div>

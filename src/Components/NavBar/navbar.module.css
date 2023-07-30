@@ -1,6 +1,6 @@
 .navContainer {
    width: 100%;
-   border: 1px solid blue;
+   border: 2px solid rgb(255, 0, 238);
 }
 
 .navList {
@@ -21,3 +21,12 @@
    cursor: pointer;
    color: black;
 }
+
+.navList Link {
+   color: white;
+}
+
+.navLink {
+   color: white;
+}
+ 
