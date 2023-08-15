@@ -43,7 +43,7 @@ export const CreateProfile = () => {
       <div className={styles.profileContainer}>
         <div className={styles.profilePicContainer}>
           <div className={styles.profilePic}></div>
-          <input type="file" name="image" onChange={''} />
+          <input type="file" name="image" />
         </div>
 
         <div className={styles.profileInfo}>

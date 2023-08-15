@@ -1,4 +1,3 @@
-import React from 'react';
 import { useUserProvider } from '../Providers/User.provider';
 import styles from './userProfile.module.css';
 import { FaFileCirclePlus } from 'react-icons/fa6';
