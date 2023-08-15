@@ -8,14 +8,14 @@ const UserContext = createContext({} as UserContextTypes);
 
 export const UserProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [userData, setUserData] = useState<UserData[] | null>(null);
+  const [userData, setUserData] = useState<UserData | null>(null);
   const [usersDogs, setUsersDogs] = useState<UsersDogs[] | null>(null);
 
   useEffect(() => {
     async function fetchUserData() {
       if (user) {
         const usersData = await getUserData(user.id);
-        setUserData(usersData);
+        setUserData(usersData[0]);
       }
     }
     fetchUserData();

@@ -1,24 +1,26 @@
 import { Link } from 'react-router-dom';
 import styles from './navbar.module.css';
+import { GiDogHouse } from 'react-icons/gi';
 import { useUserProvider } from '../Providers/User.provider';
 
 export const NavBar = () => {
-  const { user } = useUserProvider();
+  const { user, userData } = useUserProvider();
 
   return (
     <div className={styles.navContainer}>
       <nav>
         <ul className={styles.navList}>
+          {/* <div className={styles.navLogo}></div> */}
           <img className={styles.navLogo} src="./src/assets/Logo.jpeg" alt="" />
-          {user && <h4>Welcome Back,  </h4>}
+          {user && <h4>Welcome Back, {userData?.first_name} </h4>}
           <li>
             <Link className={styles.navLink} to="/">
-              Home
+              <GiDogHouse className={styles.houseIcon} />
             </Link>
           </li>
           <li>
             <Link className={styles.navLink} to="/login">
-              Login
+              Member Login
             </Link>
           </li>
           <li>

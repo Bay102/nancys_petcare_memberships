@@ -1,16 +1,108 @@
-.container {
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between;
+  background-color: rgba(255, 255, 255, 0.719);
   width: 40%;
   height: 650px;
   border: 1px solid black;
-}
-
-.profileContainer {
-  
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  box-sizing: border-box;
 }
 
 .profileContainer h3 {
-   text-align: center;
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  gap: 30px;
+  height: max-content;
+  align-items: center;
+  /* width: 100%; */
+  /* border: 1px solid blue; */
+  padding: 15px 10px;
+  margin-bottom: auto;
+}
+
+.profilePic {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 180px;
+  /* margin: auto; */
+}
+
+.name {
+  display: flex;
+  gap: 5px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.memberStatus {
+  font-size: 16px;
+  margin-left: 60px;
+  font-style: italic;
 }
 
 .dogs {
+  width: 95%;
+  margin: auto;
+  border: 1px solid black;
+  margin: 20px auto;
+}
+
+.dogsHeader {
+  display: flex;
+  align-items: center;
+  border: 1px solid black;
+  justify-content: space-around;
+}
+
+.dogsHeader button {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  height: 25px;
+
+  float: right;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.dogCard {
+  display: flex;
+  /* border: 1px solid red; */
+  border-radius: 8px;
+  background-color: rgb(251, 232, 235);
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.dogInfo {
+  display: flex;
+  width: 150px;
+  flex-direction: column;
+}
+
+.dogPic {
+  order: -1;
+  width: 65px;
+  height: 65px;
+  margin-right: 20px;
+  border: 1px solid black;
+  border-radius: 180px;
+  align-self: center;
+}
+
+.dogName {
+   align-self: center;
+   margin-left: 50px;
 }

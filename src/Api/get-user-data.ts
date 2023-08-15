@@ -4,6 +4,7 @@ export type UserData = {
   id: string;
   first_name: string;
   last_name: string;
+  member_status?: boolean
 };
 
 export const getUserData = async (userId: string) => {

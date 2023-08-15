@@ -38,7 +38,6 @@ export const Login = () => {
       const user = await login({ email, password });
 
       if (user) {
-        console.log(user.user);
         setUser(user.user);
         toast.success('Welcome Back😁');
         navigate('/home');

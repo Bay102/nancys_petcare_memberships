@@ -41,7 +41,10 @@ export const CreateProfile = () => {
     <div className={styles.container}>
       <h3>Create Profile</h3>
       <div className={styles.profileContainer}>
-        <div className={styles.profilePic}></div>
+        <div className={styles.profilePicContainer}>
+          <div className={styles.profilePic}></div>
+          <input type="file" name="image" onChange={''} />
+        </div>
 
         <div className={styles.profileInfo}>
           <input

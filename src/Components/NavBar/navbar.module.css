@@ -1,6 +1,8 @@
 .navContainer {
   width: 100%;
+  padding: 0px 10px;
   border: 2px solid rgb(255, 0, 238);
+  background-color: rgba(255, 255, 255, 0.719);
   box-sizing: border-box;
 }
 
@@ -11,10 +13,13 @@
   list-style: none;
 }
 
+
+
 .navList li {
   width: max-content;
   margin: auto 15px;
   color: black;
+  font-size: 18px;
 }
 
 .navList li:hover {
@@ -30,11 +35,16 @@
   color: black;
 }
 
-.navList h3 {
+.navList h4 {
   margin-right: auto;
+  align-self: center;
 }
 
 .navLogo {
   width: 80px;
   margin-right: auto;
+}
+
+.houseIcon {
+  font-size: 28px;
 }

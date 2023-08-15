@@ -7,7 +7,7 @@
 
 .content {
   display: flex;
-  justify-content: center;
+  justify-content:last baseline;
   gap: 25px;
   margin-top: 10px;
 }
