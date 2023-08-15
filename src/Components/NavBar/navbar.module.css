@@ -1,32 +1,40 @@
 .navContainer {
-   width: 100%;
-   border: 2px solid rgb(255, 0, 238);
+  width: 100%;
+  border: 2px solid rgb(255, 0, 238);
+  box-sizing: border-box;
 }
 
 .navList {
-   display: flex;
-   flex-direction: column;
-   gap: 20px ;
-   list-style: none;
-   text-align: center;
+  display: flex;
+  justify-content: end;
+  gap: 40px;
+  list-style: none;
 }
 
 .navList li {
-   width: 200px;
-   margin: auto;
+  width: max-content;
+  margin: auto 15px;
+  color: black;
 }
 
 .navList li:hover {
-   background-color: lightpink;
-   cursor: pointer;
-   color: black;
+  /* background-color: lightpink; */
+  cursor: pointer;
+  color: black;
 }
 
 .navList Link {
-   color: white;
 }
 
 .navLink {
-   color: white;
+  color: black;
 }
- 
+
+.navList h3 {
+  margin-right: auto;
+}
+
+.navLogo {
+  width: 80px;
+  margin-right: auto;
+}

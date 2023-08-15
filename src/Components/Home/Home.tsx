@@ -1,13 +1,19 @@
 import { NavBar } from '../NavBar/NavBar';
-// import { useUserProvider } from '../Providers/User.provider';
+import { News } from '../News/News';
+import { UserProfile } from '../UserProfile/UserProfile';
+import styles from './home.module.css'
+import { useUserProvider } from '../Providers/User.provider';
 
 export const Home = () => {
-  // const { user } = useUserProvider();
+  const { user } = useUserProvider();
   return (
-    <div className="mainContainer">
+    <div className={styles.mainContainer}>
       <NavBar />
-      {/* <div>{user?.email}</div> */}
-      <div>Please Login or Create an Account </div>
+      <div className={styles.content}>
+        <News />
+        {user && <UserProfile />}
+      </div>
     </div>
   );
 };
+

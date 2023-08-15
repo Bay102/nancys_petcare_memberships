@@ -1,0 +1,16 @@
+.container {
+  width: 40%;
+  height: 650px;
+  border: 1px solid black;
+}
+
+.profileContainer {
+  
+}
+
+.profileContainer h3 {
+   text-align: center;
+}
+
+.dogs {
+}

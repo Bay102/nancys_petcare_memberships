@@ -5,75 +5,63 @@ import styles from './signUp.module.css';
 import { NavBar } from '../NavBar/NavBar';
 import { createUser } from '../../Api/create-user';
 import { toast } from 'react-toastify';
-
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../Api/login';
+import { useUserProvider } from '../Providers/User.provider';
 
 export const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleOnChange = (e: any) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        break;
-      case 'password':
-        setPassword(value);
-        break;
-      case 'confirmPassword':
-        setConfirmPassword(value);
-        break;
-      default:
-        break;
-    }
-  };
+  const { setUser } = useUserProvider();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await createUser({ email, password });
-      toast.success('Account Created, Please Log In');
+
+      const user = await login({ email, password });
+      setUser(user.user);
+
+      toast.success('Account Created 🐾');
+      navigate('/create/profile');
     } catch (e) {
       console.log(e);
       toast.error(`${e}`);
     }
-
   };
 
   return (
     <div className={styles.signUp_container}>
       <NavBar />
       <div>
-        <form
-          className={styles.inputsContainer}
-          onSubmit={handleSubmit}
-        >
-          <h3>New Account</h3>
+        <form className={styles.inputsContainer} onSubmit={handleSubmit}>
+          <h5>New Member</h5>
           <input
             name="email"
             type="email"
             placeholder="Email"
             value={email}
-            onChange={handleOnChange}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
             value={password}
-            onChange={handleOnChange}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <input
             name="confirmPassword"
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
-            onChange={handleOnChange}
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
-          <button type="submit" >
-            Submit
-          </button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>

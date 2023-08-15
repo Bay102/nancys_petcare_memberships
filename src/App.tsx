@@ -7,6 +7,7 @@ import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { UserProvider } from './Components/Providers/User.provider';
+import { CreateProfile } from './Components/CreateProfile/CreateProfile';
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
         <Routes>
           <Route index path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/signUp" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/create/profile" element={<CreateProfile />} />
         </Routes>
         <ToastContainer position="top-center" autoClose={2200} />
       </BrowserRouter>
