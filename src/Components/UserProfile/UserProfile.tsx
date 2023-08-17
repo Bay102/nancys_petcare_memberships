@@ -1,4 +1,5 @@
 import { useUserProvider } from '../Providers/User.provider';
+// import Uploader from '../UtilityComponents/Uploader/Uploader';
 import styles from './userProfile.module.css';
 import { CiEdit } from 'react-icons/ci';
 
@@ -49,6 +50,7 @@ export const UserProfile = () => {
             ))}
         </div>
       </div>
+      {/* <Uploader /> */}
     </div>
   );
 };

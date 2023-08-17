@@ -5,6 +5,7 @@ import { useUserProvider } from '../Providers/User.provider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
+import { FiArrowLeftCircle } from 'react-icons/fi';
 
 export const CreateProfile = () => {
   const { user } = useUserProvider();
@@ -36,6 +37,10 @@ export const CreateProfile = () => {
       <h3>Create Profile</h3>
       <div className={styles.profileContainer}>
         <div className={styles.profilePicContainer}>
+          <button onClick={() => navigate('/')}>
+            <FiArrowLeftCircle />
+          </button>
+
           <div className={styles.profilePic}></div>
           {/* <input type="file" name="image" /> */}
         </div>
