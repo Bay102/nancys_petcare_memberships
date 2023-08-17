@@ -4,7 +4,7 @@ import { GiDogHouse } from 'react-icons/gi';
 import { useUserProvider } from '../Providers/User.provider';
 
 export const NavBar = () => {
-  const { user, userData } = useUserProvider();
+  const { user, userData, signOut } = useUserProvider();
 
   return (
     <div className={styles.navContainer}>
@@ -17,16 +17,21 @@ export const NavBar = () => {
               <GiDogHouse className={styles.houseIcon} />
             </Link>
           </li>
-          <li>
-            <Link className={styles.navLink} to="/login">
-              Member Login
-            </Link>
-          </li>
-          <li>
-            <Link className={styles.navLink} to="/signUp">
-              Sign Up
-            </Link>
-          </li>
+          {user && <button onClick={() => signOut()}>Log Out</button>}
+          {!user && (
+            <li>
+              <Link className={styles.navLink} to="/login">
+                Member Login
+              </Link>
+            </li>
+          )}
+          {!user && (
+            <li>
+              <Link className={styles.navLink} to="/signUp">
+                New Members
+              </Link>
+            </li>
+          )}
         </ul>
       </nav>
     </div>

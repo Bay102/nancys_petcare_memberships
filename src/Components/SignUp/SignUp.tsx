@@ -23,7 +23,7 @@ export const SignUp = () => {
     try {
       await createUser({ email, password });
 
-      const user = await login({ email, password });
+      const user = await login(email, password);
       setUser(user.user);
 
       toast.success('Account Created 🐾');

@@ -1,15 +1,14 @@
-import { supabase } from "../supabase.config"
-import { LoginTypes } from "../types"
+import { supabase } from '../supabase.config';
 
-export const login = async ({email, password}: LoginTypes) => {
 
-   const {data, error} = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-   })
+export const login = async (email: string, password: string) => {
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
 
-   if (!data.user) {
-      throw new Error(`${error?.message}`);
-    }
-    return data;
-}
+  if (!data.user) {
+    throw new Error(`${error?.message}`);
+  }
+  return data;
+};

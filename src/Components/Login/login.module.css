@@ -28,8 +28,8 @@
 .inputsContainer input {
   width: 70%;
   height: 33px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .inputsContainer button {
