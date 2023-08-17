@@ -1,6 +1,6 @@
 import { useUserProvider } from '../Providers/User.provider';
 import styles from './userProfile.module.css';
-import { FaFileCirclePlus } from 'react-icons/fa6';
+import { CiEdit } from 'react-icons/ci';
 
 export const UserProfile = () => {
   const { usersDogs, userData } = useUserProvider();
@@ -9,23 +9,27 @@ export const UserProfile = () => {
 
   return (
     <div className={styles.profileContainer}>
-      <h3>Profile</h3>
+      <div className={styles.header}>
+        <h3>Profile</h3>
+        <button>
+          <CiEdit />
+        </button>
+      </div>
       <div className={styles.info}>
-        <div className={styles.profilePic}>
-        </div>
-        <div className={styles.name}>
-          <div className={styles.first}>{userData?.first_name}</div>
-          <div className={styles.last}>{userData?.last_name}</div>
+        <div className={styles.profilePic}></div>
+
+        <div className={styles.nameNum}>
+          <div className={styles.name}>
+            <div className={styles.first}>{userData?.first_name}</div>
+            <div className={styles.last}>{userData?.last_name}</div>
+          </div>
+          <div className={styles.phoneNum}>763-787-9898</div>
         </div>
         <div className={styles.memberStatus}>Member Status: {status}</div>
-        {/* <div className={styles.phoneNum}>763-787-9898</div> */}
       </div>
       <div className={styles.dogs}>
         <div className={styles.dogsHeader}>
           <h4>My Dogs</h4>
-          <button type="button">
-            <FaFileCirclePlus />
-          </button>
         </div>
         <div className={styles.cardsContainer}>
           {usersDogs &&
@@ -37,9 +41,9 @@ export const UserProfile = () => {
                     <div>{dog.name}</div>
                     <div>{dog.breed}</div>
                   </div>
-                    <div className={styles.dogName}>
-                      <strong>Age:</strong> {dog.age}
-                    </div>
+                  <div className={styles.dogName}>
+                    <strong>Age:</strong> {dog.age}
+                  </div>
                 </div>
               </>
             ))}

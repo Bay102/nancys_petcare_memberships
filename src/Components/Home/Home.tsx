@@ -1,5 +1,5 @@
 import { NavBar } from '../NavBar/NavBar';
-import { News } from '../News/News';
+import { News } from '../IFrame/News';
 import { UserProfile } from '../UserProfile/UserProfile';
 import styles from './home.module.css'
 import { useUserProvider } from '../Providers/User.provider';

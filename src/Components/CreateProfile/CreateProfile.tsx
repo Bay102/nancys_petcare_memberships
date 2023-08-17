@@ -6,19 +6,13 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
 
-export type dogCard = {
-  DogCard: () => JSX.Element;
-};
-
 export const CreateProfile = () => {
   const { user } = useUserProvider();
-  const navigate = useNavigate();
-
   const user_id = user?.id;
+  const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-
   const [dogCards, setDogCards] = useState<JSX.Element[]>([<DogCard />]);
 
   const addDogCard = () => {
@@ -43,7 +37,7 @@ export const CreateProfile = () => {
       <div className={styles.profileContainer}>
         <div className={styles.profilePicContainer}>
           <div className={styles.profilePic}></div>
-          <input type="file" name="image" />
+          {/* <input type="file" name="image" /> */}
         </div>
 
         <div className={styles.profileInfo}>
@@ -109,16 +103,16 @@ const DogCard = () => {
   return (
     <>
       <div className={styles.cardContainer}>
-        <div className={styles.dogName}>
-          <div className={styles.dogImg}>
-            {/* <input
+        <div className={styles.dogImg}>
+          {/* <input
             name="img"
             type="text"
             placeholder="upload Img"
             value={dogImg}
             onChange={(e) => setDogImg(e.target.value)}
           /> */}
-          </div>
+        </div>
+        <div className={styles.dogName}>
           <input
             name="dogName"
             type="text"

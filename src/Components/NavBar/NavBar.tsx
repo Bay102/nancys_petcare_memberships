@@ -10,7 +10,6 @@ export const NavBar = () => {
     <div className={styles.navContainer}>
       <nav>
         <ul className={styles.navList}>
-          {/* <div className={styles.navLogo}></div> */}
           <img className={styles.navLogo} src="./src/assets/Logo.jpeg" alt="" />
           {user && <h4>Welcome Back, {userData?.first_name} </h4>}
           <li>

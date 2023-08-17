@@ -13,8 +13,6 @@
   list-style: none;
 }
 
-
-
 .navList li {
   width: max-content;
   margin: auto 15px;
@@ -46,5 +44,5 @@
 }
 
 .houseIcon {
-  font-size: 28px;
+  font-size: 32px;
 }

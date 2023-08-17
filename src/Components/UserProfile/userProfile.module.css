@@ -1,10 +1,10 @@
 .profileContainer {
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.719);
   width: 40%;
-  height: 650px;
+  height: 85vh;
   border: 1px solid black;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -12,7 +12,18 @@
 }
 
 .profileContainer h3 {
-  text-align: center;
+  /* text-align: center; */
+  margin: auto;
+  text-decoration: underline;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header button {
+  font-size: 20px;
 }
 
 .info {
@@ -21,7 +32,8 @@
   height: max-content;
   align-items: center;
   /* width: 100%; */
-  /* border: 1px solid blue; */
+  border: 1px solid pink;
+  background-color: aliceblue;
   padding: 15px 10px;
   margin-bottom: auto;
 }
@@ -40,11 +52,21 @@
   font-size: 25px;
   font-weight: 600;
 }
+.nameNum {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: 600;
+}
+.phoneNum {
+  font-size: 14px;
+  border-bottom: 1px solid blue;
+}
 
 .memberStatus {
   font-size: 16px;
-  margin-left: 60px;
-  font-style: italic;
+  margin-left: 10%;
+  /* font-style: italic; */
 }
 
 .dogs {
@@ -81,7 +103,7 @@
   display: flex;
   /* border: 1px solid red; */
   border-radius: 8px;
-  background-color: rgb(251, 232, 235);
+  background-color: aliceblue;
   padding: 5px 10px;
   box-sizing: border-box;
 }
@@ -103,6 +125,6 @@
 }
 
 .dogName {
-   align-self: center;
-   margin-left: 50px;
+  align-self: center;
+  margin-left: 50px;
 }
