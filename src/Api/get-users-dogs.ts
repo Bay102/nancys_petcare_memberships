@@ -1,18 +1,18 @@
 import { supabase } from '../supabase.config';
 
 export type UsersDogs = {
-  userId: string;
+  userDataId: string;
   id: number;
   name: string;
   breed: string;
   age: number;
 };
 
-export const getUsersDogs = async (userId: string) => {
+export const getUsersDogs = async (userDataId: string) => {
   const { data, error } = await supabase
     .from('dogs')
     .select('*')
-    .eq('user_id', userId);
+    .eq('user_data_id', userDataId);
 
   if (error) {
     throw new Error(`${error}`);

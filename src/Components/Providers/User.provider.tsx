@@ -9,32 +9,42 @@ import { toast } from 'react-toastify';
 const UserContext = createContext({} as UserContextTypes);
 
 export const UserProvider = ({ children }: { children: JSX.Element }) => {
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = useState<User | null>(null);
   const [userData, setUserData] = useState<UserData | null>(null);
   const [usersDogs, setUsersDogs] = useState<UsersDogs[] | null>(null);
-
   const [auth, setAuth] = useState(false);
+
+  const [admin, setAdmin] = useState(false);
+
+  const isAdmin = () => {
+    user?.email === 'nancylbay@hotmail.com' ? setAdmin(true) : setAdmin(false);
+  };
 
   const signOut = () => {
     supabase.auth.signOut();
-    toast.success('Logged Out ✅')
-  }
+    setUser(null);
+    toast.success('Logged Out ✅');
+  };
 
   useEffect(() => {
-    const getUser = async () => {
+    isAdmin();
+  }, [user]);
+
+  useEffect(() => {
+    async function getUser() {
       const { data } = await supabase.auth.getUser();
       const { user: currentUser } = data;
-      setUser(currentUser ?? undefined);
+      setUser(currentUser ?? null);
       // setLoading(false);
-    };
-    getUser();
+    }
 
+    getUser();
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN') {
-        setUser(session?.user);
+        setUser(session?.user ? session.user : null);
         setAuth(true);
       } else if (event === 'SIGNED_OUT') {
-        setUser(undefined);
+        setUser(null);
         setAuth(false);
       }
     });
@@ -43,13 +53,12 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
     };
   }, []);
 
-  console.log(user);
-
   useEffect(() => {
     async function fetchUserData() {
       if (user) {
         const usersData = await getUserData(user.id);
         setUserData(usersData[0]);
+        console.log(userData);
       }
     }
     fetchUserData();
@@ -57,16 +66,19 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
 
   useEffect(() => {
     async function fetchUsersDogs() {
-      if (user) {
-        const usersDogs = await getUsersDogs(user.id);
+      if (userData) {
+        const usersDogs = await getUsersDogs(userData.id);
         setUsersDogs(usersDogs);
+        console.log(usersDogs);
       }
     }
     fetchUsersDogs();
   }, [user]);
 
   return (
-    <UserContext.Provider value={{ auth, user, setUser, userData, signOut ,usersDogs }}>
+    <UserContext.Provider
+      value={{ admin, auth, user, setUser, userData, signOut, usersDogs }}
+    >
       {children}
     </UserContext.Provider>
   );

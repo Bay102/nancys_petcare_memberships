@@ -1,8 +1,10 @@
 .container {
   width: 100%;
-  /* height: 100%; */
+  max-height: 100%;
   /* border: 1px solid blue; */
   margin: auto;
+  box-sizing: border-box;
+  overflow-y: hidden;
 }
 
 .container h3 {
@@ -14,9 +16,10 @@
   flex-direction: column;
   gap: 20px;
   box-sizing: border-box;
+  min-width: 275px;
   width: max-content;
-  height: 620px;
-  padding: 15px;
+  height: max-content;
+  padding: 10px;
   margin: 15px auto;
   border: 1px solid black;
   border-radius: 8px;
@@ -24,7 +27,8 @@
   box-sizing: border-box;
 }
 
-.profilePicContainer input {
+.profilePicContainer button {
+
 }
 
 .save {
@@ -34,11 +38,11 @@
 }
 
 .profilePic {
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   border: 1px solid black;
   border-radius: 180px;
-  margin: 20px auto;
+  margin:  auto;
 }
 
 .profileInfo {
@@ -49,9 +53,31 @@
 }
 
 .profileInfo input {
-  width: 200px;
-  height: 35px;
+  width: 180px;
+  height: 30px;
+  border: 1.5px solid pink;
+  border-radius: 5px;
   margin: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.createDogsContainer {
+  align-self: center;
+  align-items: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .dogCards {
@@ -76,7 +102,9 @@
 .cardContainer {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  margin: 20px auto;
+  /* flex-direction: column; */
+  align-items: center;
   gap: 10px;
   padding: 5px;
   justify-content: center;
@@ -87,8 +115,10 @@
 }
 
 .cardContainer input {
-  width: 100px;
+  width: 120px;
   height: 25px;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
 .cardContainer button {
@@ -96,6 +126,7 @@
   height: 30px;
   font-size: 12px;
   margin: auto;
+
 }
 
 .dogImg {
@@ -114,5 +145,18 @@
 }
 
 .save {
-  margin: auto;
+  margin: auto;  
+  background-color: rgb(181, 120, 120);
+  color: white;
+}
+
+.save:hover {
+  background-color: white;
+  color: black;
+}
+
+.complete {
+  height: 60px;
+  background-color: lightgreen;
+  margin-top: 100px;
 }

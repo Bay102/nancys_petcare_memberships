@@ -1,21 +1,19 @@
 import { supabase } from '../supabase.config';
 
-export type UserData = {
-  user_id: string | undefined;
-  firstName: string;
-  lastName: string;
-};
-
-export const saveProfile = async ({
-  user_id,
-  firstName,
-  lastName,
-}: UserData): Promise<void> => {
+export const saveProfile = async (
+  user_id: string | undefined,
+  firstName: string,
+  lastName: string,
+  phone: string,
+) => {
   const { error } = await supabase
     .from('user_data')
-    .insert({ user_id, first_name: firstName, last_name: lastName });
+    .insert({ user_id, first_name: firstName, last_name: lastName, phone });
 
   if (error) {
+    console.log(error);
     throw new Error(`${error}`);
+
+
   }
 };

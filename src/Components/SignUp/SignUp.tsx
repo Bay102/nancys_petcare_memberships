@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { useState } from 'react';
 import styles from './signUp.module.css';
 import { NavBar } from '../NavBar/NavBar';

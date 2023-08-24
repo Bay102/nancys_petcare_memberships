@@ -1,45 +1,72 @@
-import { useState } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeEvent, useRef, useState } from 'react';
 import styles from './create-profile.module.css';
 import { createDog } from '../../Api/create-dog';
 import { useUserProvider } from '../Providers/User.provider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
-import { FiArrowLeftCircle } from 'react-icons/fi';
+import { supabase } from '../../supabase.config';
+
+//> SPLIT CREATE PROFILE AND CREATE DOG INTO DIFFERENT PAGES
 
 export const CreateProfile = () => {
-  const { user } = useUserProvider();
+  const { user, setUser } = useUserProvider();
   const user_id = user?.id;
   const navigate = useNavigate();
+  const [phone, setPhone] = useState('');
 
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [dogCards, setDogCards] = useState<JSX.Element[]>([<DogCard />]);
+  const firstName = useRef<any>(null);
+  const lastName = useRef<any>(null);
+  // const [dogCards, setDogCards] = useState<JSX.Element[]>([<DogCard />]);
 
-  const addDogCard = () => {
-    setDogCards([...dogCards, <DogCard />]);
-  };
+  // const addDogCard = () => {
+  //   setDogCards([...dogCards, <DogCard />]);
+  // };
 
-  const submitProfile = () => {
+  const submitProfile = async () => {
     try {
+      const { data } = await supabase.auth.getUser();
+      const { user: currentUser } = data;
+      setUser(currentUser ?? null);
+
       if (user) {
-        saveProfile({ user_id, firstName, lastName });
-        toast.success('Profile Created');
-        navigate('/');
+        await saveProfile(
+          user_id,
+          firstName.current?.value,
+          lastName.current?.value,
+          phone
+        );
+
+        toast.success(`Add Your Dogs🐶`);
+        navigate('/add/dogs');
       }
     } catch (e) {
       toast.error(`${e}`);
     }
   };
 
+  const handlePhoneNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const inputPhoneNumber = event.target.value.replace(/\D/g, '');
+    const formattedPhoneNumber = formatPhoneNumber(inputPhoneNumber);
+    setPhone(formattedPhoneNumber);
+  };
+
+  const formatPhoneNumber = (phoneNumber: string) => {
+    const areaCode = phoneNumber.slice(0, 3);
+    const middlePart = phoneNumber.slice(3, 6);
+    const lastPart = phoneNumber.slice(6);
+
+    return `(${areaCode}) ${middlePart}-${lastPart}`;
+  };
   return (
     <div className={styles.container}>
-      <h3>Create Profile</h3>
       <div className={styles.profileContainer}>
+        <h3>Create Profile</h3>
         <div className={styles.profilePicContainer}>
-          <button onClick={() => navigate('/')}>
+          {/* <button onClick={() => navigate('/')}>
             <FiArrowLeftCircle />
-          </button>
+          </button> */}
 
           <div className={styles.profilePic}></div>
           {/* <input type="file" name="image" /> */}
@@ -50,17 +77,23 @@ export const CreateProfile = () => {
             name="firstName"
             type="text"
             placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            ref={firstName}
           />
           <input
             name="lastName"
             type="text"
             placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            ref={lastName}
           />
-          <div className={styles.dogs}>
+          <input
+            name="phone"
+            type="text"
+            maxLength={14}
+            onChange={handlePhoneNumberChange}
+            placeholder="Phone Number"
+            value={phone}
+          />
+          {/* <div className={styles.dogs}>
             <div className={styles.dogHeader}>
               <h3>Dogs</h3>
               <button type="button" onClick={addDogCard}>
@@ -72,32 +105,40 @@ export const CreateProfile = () => {
                 <div key={index}>{dogCard}</div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
         <button
           className={styles.save}
           onClick={() => submitProfile()}
           type="button"
         >
-          Save Profile
+          Next
         </button>
       </div>
     </div>
   );
 };
 
-const DogCard = () => {
-  const { user } = useUserProvider();
-  const user_id = user?.id;
-  //   const [dogImg, setDogImg] = useState('');
+export const DogCard = () => {
+  const { user, userData } = useUserProvider();
+  const navigate = useNavigate();
+  const userDataId = userData?.id;
   const [name, setName] = useState('');
   const [breed, setBreed] = useState('');
   const [age, setAge] = useState(0);
 
-  const newDog = () => {
+  //   const [dogImg, setDogImg] = useState('');
+
+  const addDog = () => {
+    console.log(user);
     try {
+      console.log(userDataId);
       if (user) {
-        createDog({ user_id, name, breed, age });
+        setName('');
+        setBreed('');
+        setAge(0);
+        createDog({ name, breed, age, userDataId });
+        toast.success('Dog Added 🐶');
       }
     } catch (e) {
       console.log(e);
@@ -107,42 +148,53 @@ const DogCard = () => {
 
   return (
     <>
-      <div className={styles.cardContainer}>
-        <div className={styles.dogImg}>
-          {/* <input
+      <div className={styles.createDogsContainer}>
+        <form className={styles.cardContainer}>
+          <div className={styles.dogImg}>
+            {/* <input
             name="img"
             type="text"
             placeholder="upload Img"
             value={dogImg}
             onChange={(e) => setDogImg(e.target.value)}
           /> */}
+          </div>
+          <div className={styles.dogName}>
+            <input
+              name="dogName"
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+          <div className={styles.dogBreed}>
+            <input
+              name="breed"
+              type="text"
+              placeholder="Breed"
+              value={breed}
+              onChange={(e) => setBreed(e.target.value)}
+            />
+          </div>
+          <div className={styles.dogAge}>
+            <input
+              name="lastName"
+              type="text"
+              placeholder="Age"
+              value={age}
+              onChange={(e) => setAge(+e.target.value)}
+            />
+          </div>
+          <button type='button' onClick={() => addDog()}>
+            Add Dog
+          </button>
+        </form>
+        <div className={styles.dogsContainer}>
+          <h3>My Dogs</h3>
         </div>
-        <div className={styles.dogName}>
-          <input
-            name="dogName"
-            type="text"
-            placeholder="Name"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className={styles.dogBreed}>
-          <input
-            name="breed"
-            type="text"
-            placeholder="Breed"
-            onChange={(e) => setBreed(e.target.value)}
-          />
-        </div>
-        <div className={styles.dogAge}>
-          <input
-            name="lastName"
-            type="text"
-            placeholder="Age"
-            onChange={(e) => setAge(+e.target.value)}
-          />
-        </div>
-        <button type="button" onClick={() => newDog()}>
-          Create Dog
+        <button className={styles.complete} onClick={() => navigate('/')}>
+          Complete
         </button>
       </div>
     </>

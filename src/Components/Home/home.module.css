@@ -9,12 +9,19 @@
   display: flex;
   justify-content:last baseline;
   gap: 25px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 
 @media (max-width: 390px) {
    .mainContainer {
-    /* width: 380px; */
+    max-width: 390px;
+  }
+  
+  .content {
+    flex-direction: column;
+    gap: 5px;
+    margin: 0;
+    
    }
 }

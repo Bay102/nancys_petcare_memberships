@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { User } from '@supabase/supabase-js';
-import { UserData } from './Api/get-user-data';
 import { UsersDogs } from './Api/get-users-dogs';
 
 export type AppContextTypes = {
@@ -9,9 +8,10 @@ export type AppContextTypes = {
 };
 
 export type UserContextTypes = {
+  admin: boolean;
   auth: boolean;
-  user: User | undefined;
-  setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   userData: UserData | null;
   signOut: any;
   usersDogs: UsersDogs[] | null;
@@ -20,4 +20,12 @@ export type UserContextTypes = {
 
 export type LoginTypes = {
   [key: string]: string;
+};
+
+export type UserData = {
+  id: string;
+  first_name: any;
+  last_name: any;
+  member_status?: boolean;
+  phone?: string;
 };
