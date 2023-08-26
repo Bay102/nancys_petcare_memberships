@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.806);
-  width: 40%;
+  min-width: 35%;
   height: 85vh;
   border: 1px solid black;
   border-top-left-radius: 10px;
@@ -61,9 +61,9 @@
 
 .name {
   display: flex;
-  gap: 5px;
+  /* gap: 5px; */
   font-family: 'Courier New', Courier, monospace;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 600;
 }
 .nameNum {
@@ -80,8 +80,8 @@
 }
 
 .memberStatus {
-  font-size: 16px;
-  margin-left: 10%;
+  font-size: 13px;
+  margin-left: 20px;
   /* font-style: italic; */
 }
 

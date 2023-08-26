@@ -13,17 +13,11 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
   const [userData, setUserData] = useState<UserData | null>(null);
   const [usersDogs, setUsersDogs] = useState<UsersDogs[] | null>(null);
   const [auth, setAuth] = useState(false);
-
   const [admin, setAdmin] = useState(false);
+  // const [loading, setLoading] = useState(true);
 
   const isAdmin = () => {
     user?.email === 'nancylbay@hotmail.com' ? setAdmin(true) : setAdmin(false);
-  };
-
-  const signOut = () => {
-    supabase.auth.signOut();
-    setUser(null);
-    toast.success('Logged Out ✅');
   };
 
   useEffect(() => {
@@ -35,7 +29,6 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
       const { data } = await supabase.auth.getUser();
       const { user: currentUser } = data;
       setUser(currentUser ?? null);
-      // setLoading(false);
     }
 
     getUser();
@@ -58,23 +51,21 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
       if (user) {
         const usersData = await getUserData(user.id);
         setUserData(usersData[0]);
-        console.log(userData);
+        const usersDogs = await getUsersDogs(usersData[0]?.id);
+        setUsersDogs(usersDogs || null);
+        console.log(usersData[0]);
       }
     }
     fetchUserData();
   }, [user]);
 
-  useEffect(() => {
-    async function fetchUsersDogs() {
-      if (userData) {
-        const usersDogs = await getUsersDogs(userData.id);
-        setUsersDogs(usersDogs);
-        console.log(usersDogs);
-      }
-    }
-    fetchUsersDogs();
-  }, [user]);
-
+  const signOut = () => {
+    supabase.auth.signOut();
+    setUser(null);
+    setUserData(null);
+    setUsersDogs(null);
+    toast.success('Logged Out ✅');
+  };
   return (
     <UserContext.Provider
       value={{ admin, auth, user, setUser, userData, signOut, usersDogs }}

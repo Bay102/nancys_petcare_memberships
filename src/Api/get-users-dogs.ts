@@ -8,13 +8,14 @@ export type UsersDogs = {
   age: number;
 };
 
-export const getUsersDogs = async (userDataId: string) => {
+export const getUsersDogs = async (userDataId: string ) => {
   const { data, error } = await supabase
     .from('dogs')
     .select('*')
     .eq('user_data_id', userDataId);
 
   if (error) {
+    console.log(error)
     throw new Error(`${error}`);
   }
 

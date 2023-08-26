@@ -21,14 +21,14 @@ export const NavBar = () => {
           {!user && (
             <li>
               <Link className={styles.navLink} to="/login">
-                Member Login
+                <button>Member Login</button>
               </Link>
             </li>
           )}
           {!user && (
             <li>
               <Link className={styles.navLink} to="/signUp">
-                New Members
+                <button> New Members</button>
               </Link>
             </li>
           )}

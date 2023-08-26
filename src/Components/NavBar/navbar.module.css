@@ -27,6 +27,12 @@
   color: black;
 }
 
+.navList li button {
+  height: max-content;
+  width: max-content;
+  background-color: rgb(198, 219, 228);
+}
+
 .navLink {
   color: black;
 }

@@ -1,9 +1,10 @@
 import { NavBar } from '../NavBar/NavBar';
-import { News } from '../IFrame/News';
+
 import { UserProfile } from '../UserProfile/UserProfile';
 import styles from './home.module.css';
 import { useUserProvider } from '../Providers/User.provider';
 import { Admins } from '../AdminsDashboard/Admins';
+import { NPC } from '../IFrame/NPC';
 
 export const Home = () => {
   const { admin, user } = useUserProvider();
@@ -12,7 +13,7 @@ export const Home = () => {
       <NavBar />
       <div className={styles.content}>
         {admin && <Admins />}
-        {!admin && user && <News />}
+        {!admin && <NPC />}
         {!admin && user && <UserProfile />}
       </div>
     </div>

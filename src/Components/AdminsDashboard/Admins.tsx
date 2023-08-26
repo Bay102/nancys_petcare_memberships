@@ -75,11 +75,11 @@ const AdminDashboard = () => {
             }}
           />
         </Header>
-        <Content 
+        <Content
           style={{
             margin: '24px 16px',
             padding: 10,
-            minHeight: 480,
+            minHeight: '78vh',
             background: colorBgContainer,
           }}
         >

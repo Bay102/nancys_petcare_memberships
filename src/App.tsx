@@ -7,8 +7,9 @@ import './App.css';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { UserProvider } from './Components/Providers/User.provider';
-import { CreateProfile, DogCard } from './Components/CreateProfile/CreateProfile';
+import { CreateProfile } from './Components/CreateProfile/CreateProfile';
 import { Admins } from './Components/AdminsDashboard/Admins';
+import { DogCard } from './Components/UtilityComponents/DogCard/DogCard';
 
 function App() {
   return (

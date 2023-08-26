@@ -1,7 +1,7 @@
 import styles from './news.module.css'
 
 
-export const News = () => {
+export const NPC = () => {
 
    return (
       <div className={styles.container}>

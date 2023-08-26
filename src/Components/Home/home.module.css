@@ -7,21 +7,19 @@
 
 .content {
   display: flex;
-  justify-content:last baseline;
-  gap: 25px;
+  justify-content: last baseline;
+  gap: 10px;
   /* margin-top: 10px; */
 }
 
-
 @media (max-width: 390px) {
-   .mainContainer {
+  .mainContainer {
     max-width: 390px;
   }
-  
+
   .content {
     flex-direction: column;
     gap: 5px;
     margin: 0;
-    
-   }
+  }
 }
