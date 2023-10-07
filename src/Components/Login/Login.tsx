@@ -5,8 +5,10 @@ import styles from './login.module.css';
 import { login } from '../../Api/login';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useUserProvider } from '../Providers/User.provider';
 
 export const Login = () => {
+  const { setUser, setAuth } = useUserProvider();
   const navigate = useNavigate();
 
   const email = useRef<any>(null);
@@ -22,8 +24,11 @@ export const Login = () => {
       const user = await login(email.current.value, password.current.value);
 
       if (user) {
+        setUser(user.user);
+        setAuth(true);
         toast.success('Welcome Back😁');
-        navigate('/home');
+
+        navigate('/dashboard');
       }
     } catch (e) {
       toast.error(`${e}`);
@@ -34,7 +39,11 @@ export const Login = () => {
     <div className={styles.loginContainer}>
       <NavBar />
       <div>
-        <form className={styles.inputsContainer} action="" onSubmit={handleLogin}>
+        <form
+          className={styles.inputsContainer}
+          action=""
+          onSubmit={handleLogin}
+        >
           <h3>Sign In</h3>
           <input name="email" type="email" placeholder="Email" ref={email} />
           <input
@@ -43,6 +52,7 @@ export const Login = () => {
             placeholder="Password"
             ref={password}
           />
+          <a className={styles.forgot}>Forgot Password?</a>
           <button type="submit">Login</button>
         </form>
       </div>

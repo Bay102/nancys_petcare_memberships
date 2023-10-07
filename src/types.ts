@@ -7,25 +7,25 @@ export type AppContextTypes = {
   setComponent: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export type UserContextTypes = {
-  admin: boolean;
-  auth: boolean;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-  userData: UserData | null;
-  signOut: any;
-  usersDogs: UsersDogs[] | null;
-  // setUserData: React.Dispatch<React.SetStateAction<UserData[] | null>>;
-};
-
 export type LoginTypes = {
   [key: string]: string;
 };
 
-export type UserData = {
+export type UserDataType = {
   id: string;
   first_name: any;
   last_name: any;
   member_status?: boolean;
   phone?: string;
+  role: 'client' | 'admin';
+};
+
+export type UserContextTypes = {
+  admin: boolean;
+  setAuth: React.Dispatch<React.SetStateAction<boolean>>;
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  userData: UserDataType | null;
+  signOut: any;
+  usersDogs: UsersDogs[] | null;
 };

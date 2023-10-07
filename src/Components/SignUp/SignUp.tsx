@@ -19,7 +19,11 @@ export const SignUp = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     try {
+      if (password !== confirmPassword) {
+        throw new Error('Passwords Must Match');
+      }
       await createUser({ email, password });
 
       const user = await login(email, password);

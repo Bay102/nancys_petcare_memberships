@@ -8,7 +8,8 @@ export const UserProfile = () => {
   const { usersDogs, userData } = useUserProvider();
   const navigate = useNavigate();
 
-  const status = userData?.member_status === false ? 'In-active 🚫' : 'Active ✅';
+  const status =
+    userData?.member_status === false ? 'In-active 🚫' : 'Active ✅';
 
   return (
     <div className={styles.profileContainer}>
@@ -44,7 +45,7 @@ export const UserProfile = () => {
                     <div>{dog.name}</div>
                     <div>{dog.breed}</div>
                   </div>
-                  <div className={styles.dogName}>
+                  <div className={styles.dogAge}>
                     <strong>Age:</strong> {dog.age}
                   </div>
                 </div>

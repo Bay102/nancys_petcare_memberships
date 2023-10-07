@@ -5,29 +5,29 @@ import { SignUp } from './Components/SignUp/SignUp';
 import { Login } from './Components/Login/Login';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from './Components/Providers/User.provider';
 import { CreateProfile } from './Components/CreateProfile/CreateProfile';
-import { Admins } from './Components/AdminsDashboard/Admins';
 import { DogCard } from './Components/UtilityComponents/DogCard/DogCard';
+import Dashboard from './Components/Dashboards/Dashboard/Dashboard';
 
 function App() {
   return (
     <UserProvider>
-    <AppProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route index path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/create/profile" element={<CreateProfile />} />
-          <Route path="/admin" element={<Admins />} />
-          <Route path="/add/dogs" element={<DogCard />} />
-        </Routes>
-        <ToastContainer position="top-center" autoClose={2200} />
-      </BrowserRouter>
-    </AppProvider>
+      <AppProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route index path="/" element={<Home />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            {/* <Route path="/admin_dashboard" element={<AdminDashboard />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/create/profile" element={<CreateProfile />} />
+            <Route path="/add/dogs" element={<DogCard />} />
+          </Routes>
+          <ToastContainer position="top-center" autoClose={2200} />
+        </BrowserRouter>
+      </AppProvider>
     </UserProvider>
   );
 }

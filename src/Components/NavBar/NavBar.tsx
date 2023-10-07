@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './navbar.module.css';
 import { GiDogHouse } from 'react-icons/gi';
 import { useUserProvider } from '../Providers/User.provider';
@@ -6,18 +6,30 @@ import { useUserProvider } from '../Providers/User.provider';
 export const NavBar = () => {
   const { user, userData, signOut } = useUserProvider();
 
+  const navigate = useNavigate();
+
+  const logOutUser = () => {
+    signOut();
+    navigate('/');
+  };
+
   return (
     <div className={styles.navContainer}>
       <nav>
         <ul className={styles.navList}>
-          <img className={styles.navLogo} src="./src/assets/Logo.jpeg" alt="" />
+          {/* <img className={styles.navLogo} src="./src/assets/Logo.jpeg" alt="" /> */}
           {user && <h4>Welcome Back, {userData?.first_name} </h4>}
+          {user && (
+            <li>
+              <Link to={'/dashboard'}>Dashboard</Link>
+            </li>
+          )}
           <li>
             <Link className={styles.navLink} to="/">
               <GiDogHouse className={styles.houseIcon} />
             </Link>
           </li>
-          {user && <button onClick={() => signOut()}>Log Out</button>}
+          {user && <button onClick={() => logOutUser()}>Log Out</button>}
           {!user && (
             <li>
               <Link className={styles.navLink} to="/login">

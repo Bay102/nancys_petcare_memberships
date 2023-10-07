@@ -1,0 +1,23 @@
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 20px;
+  background: white;
+  height: 40px;
+}
+
+.headerButton {
+  font-size: 18px;
+  height: fit-content;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.content {
+  margin: 10px 16px;
+  /* padding: 24px; */
+  min-height: 84vh;
+  background: white;
+}

@@ -1,13 +1,5 @@
 import { supabase } from '../supabase.config';
 
-export type UserData = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  member_status: boolean;
-  phone: string;
-};
-
 export const getUserData = async (userId: string) => {
   const { data, error } = await supabase
     .from('user_data')
@@ -15,7 +7,7 @@ export const getUserData = async (userId: string) => {
     .eq('user_id', userId);
 
   if (error) {
-    console.log(error)
+    console.log(error);
     throw new Error(`${error}`);
   }
 

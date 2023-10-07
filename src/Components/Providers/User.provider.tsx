@@ -1,74 +1,62 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { UserContextTypes } from '../../types';
+import { UserContextTypes, UserDataType } from '../../types';
 import { User } from '@supabase/supabase-js';
-import { UserData, getUserData } from '../../Api/get-user-data';
 import { UsersDogs, getUsersDogs } from '../../Api/get-users-dogs';
 import { supabase } from '../../supabase.config';
 import { toast } from 'react-toastify';
+import { getUserData } from '../../Api/get-user-data';
 
 const UserContext = createContext({} as UserContextTypes);
 
 export const UserProvider = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [userData, setUserData] = useState<UserData | null>(null);
+  const [userData, setUserData] = useState<UserDataType | null>(null);
   const [usersDogs, setUsersDogs] = useState<UsersDogs[] | null>(null);
-  const [auth, setAuth] = useState(false);
   const [admin, setAdmin] = useState(false);
-  // const [loading, setLoading] = useState(true);
-
-  const isAdmin = () => {
-    user?.email === 'nancylbay@hotmail.com' ? setAdmin(true) : setAdmin(false);
-  };
-
-  useEffect(() => {
-    isAdmin();
-  }, [user]);
-
-  useEffect(() => {
-    async function getUser() {
-      const { data } = await supabase.auth.getUser();
-      const { user: currentUser } = data;
-      setUser(currentUser ?? null);
-    }
-
-    getUser();
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        setUser(session?.user ? session.user : null);
-        setAuth(true);
-      } else if (event === 'SIGNED_OUT') {
-        setUser(null);
-        setAuth(false);
-      }
-    });
-    return () => {
-      data.subscription.unsubscribe();
-    };
-  }, []);
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     async function fetchUserData() {
-      if (user) {
+      if (user && auth) {
         const usersData = await getUserData(user.id);
         setUserData(usersData[0]);
-        const usersDogs = await getUsersDogs(usersData[0]?.id);
-        setUsersDogs(usersDogs || null);
-        console.log(usersData[0]);
+
+        if (usersData[0]?.role === 'admin') {
+          setAdmin(true);
+        }
+
+        if (!admin) {
+          const usersDogs = await getUsersDogs(usersData[0]?.id);
+          setUsersDogs(usersDogs || null);
+        }
       }
     }
     fetchUserData();
-  }, [user]);
+  }, [user, admin, auth]);
+
+  // useEffect(() => {
+  //   async function setSession() {
+  //     const session = await supabase.auth.getSession();
+  //     setUser(session.data.session?.user ?? null);
+  //     setAuth(true);
+  //   }
+  //   setSession();
+  // }, [auth]);
 
   const signOut = () => {
-    supabase.auth.signOut();
     setUser(null);
+    setAuth(false);
     setUserData(null);
     setUsersDogs(null);
+    setAdmin(false);
+    supabase.auth.signOut();
+
     toast.success('Logged Out ✅');
   };
+
   return (
     <UserContext.Provider
-      value={{ admin, auth, user, setUser, userData, signOut, usersDogs }}
+      value={{ admin, setAuth, user, setUser, userData, signOut, usersDogs }}
     >
       {children}
     </UserContext.Provider>

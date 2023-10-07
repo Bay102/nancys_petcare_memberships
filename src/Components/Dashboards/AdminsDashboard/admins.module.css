@@ -1,0 +1,43 @@
+.header {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  background: white;
+  padding: 0 20px;
+  /* height: 20px; */
+}
+
+.headerButton {
+  font-size: 18px;
+  height: fit-content;
+  /* padding: 20px; */
+  /* border: 1px solid blue; */
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.content {
+  margin: 10px 16px;
+  /* padding: 24px; */
+  min-height: 91.45vh;
+  background: white;
+}
+
+.membersListContainer {
+  width: 100%;
+  height: 84vh;
+  border: 1px solid black;
+}
+
+.scheduleContainer {
+  width: 100%;
+  height: 84vh;
+  /* border: 1px solid red; */
+}
+
+.calender {
+  border: none;
+  width: 100%;
+  height: 100%;
+}

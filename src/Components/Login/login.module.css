@@ -12,7 +12,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
   width: 300px;
   height: 350px;
   border: 1px solid black;
@@ -26,17 +26,27 @@
 }
 
 .inputsContainer input {
-  width: 70%;
-  height: 33px;
+  width: 75%;
+  height: 30px;
   border: 1px solid black;
   border-radius: 5px;
 }
 
 .inputsContainer button {
-  background-color: rgba(0, 0, 0, 0.812);
-  color: white;
+  background-color: rgb(198, 219, 228);
+  color: rgb(7, 6, 6);
+  font-size: 15px;
+  height: max-content;
 }
 
 .inputsContainer button:hover {
   background-color: lightcoral;
+}
+
+.forgot {
+  background-color: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: left;
 }

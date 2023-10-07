@@ -12,9 +12,9 @@
   /* margin-top: 10px; */
 }
 
-@media (max-width: 390px) {
+@media (max-width: 450px) {
   .mainContainer {
-    max-width: 390px;
+    /* max-width: 390px; */
   }
 
   .content {

@@ -4,7 +4,7 @@ export const saveProfile = async (
   user_id: string | undefined,
   firstName: string,
   lastName: string,
-  phone: string,
+  phone: string
 ) => {
   const { error } = await supabase
     .from('user_data')
@@ -12,8 +12,6 @@ export const saveProfile = async (
 
   if (error) {
     console.log(error);
-    throw new Error(`${error}`);
-
-
+    throw new Error(`${error.message}`);
   }
 };
