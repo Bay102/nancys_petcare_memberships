@@ -12,15 +12,18 @@ import {
   MessageOutlined,
 } from '@ant-design/icons';
 
+import { FaHandHoldingHeart, FaMoneyCheckAlt } from 'react-icons/fa';
+
 import { NPC } from '../../NPC/NPC';
 import { useUserProvider } from '../../Providers/User.provider';
 import { useNavigate } from 'react-router-dom';
+import { UserProfile } from '../../UserProfile/UserProfile';
 
 const { Header, Sider, Content } = Layout;
 
 export const UserDashboard = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [component, setComponent] = useState(<NPC />);
+  const [component, setComponent] = useState(<UserProfile />);
 
   const { user, userData, signOut } = useUserProvider();
   const navigate = useNavigate();
@@ -46,13 +49,19 @@ export const UserDashboard = () => {
           trigger={null}
           collapsible
           collapsed={collapsed}
-          style={{ backgroundColor: 'white' }}
+          // style={{ backgroundColor: 'white' }}
         >
           <div className="demo-logo-vertical" />
+          {user && (
+            <div className={styles.welcome}>
+              Welcome Back, {userData?.first_name}
+            </div>
+          )}
           <Menu
             theme="light"
             mode="inline"
-            defaultSelectedKeys={['1']}
+            className={styles.menu}
+            defaultSelectedKeys={['3']}
             items={[
               {
                 key: '1',
@@ -61,24 +70,30 @@ export const UserDashboard = () => {
                 onClick: () => setComponent(<NPC />),
               },
               {
+                key: '3',
+                icon: <UserOutlined />,
+                label: 'Profile',
+                onClick: () => setComponent(<UserProfile />),
+              },
+              {
                 key: '2',
                 icon: <MessageOutlined />,
                 label: 'Message Nancy',
               },
               {
-                key: '3',
-                icon: <UserOutlined />,
-                label: 'Profile',
-              },
-              {
                 key: '4',
-                icon: <UploadOutlined />,
+                icon: <FaMoneyCheckAlt />,
                 label: 'Pay Now',
               },
               {
                 key: '5',
                 icon: <UploadOutlined />,
                 label: 'Invoices',
+              },
+              {
+                key: '6',
+                icon: <FaHandHoldingHeart />,
+                label: 'Membership',
               },
             ]}
           />
@@ -106,8 +121,6 @@ export const UserDashboard = () => {
                 className={styles.headerButton}
               />
             )}
-
-            {user && <div>Hello, {userData?.first_name}</div>}
           </Header>
           <Content className={styles.content}>{component}</Content>
         </Layout>

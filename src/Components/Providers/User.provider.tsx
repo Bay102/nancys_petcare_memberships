@@ -34,14 +34,17 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
     fetchUserData();
   }, [user, admin, auth]);
 
-  // useEffect(() => {
-  //   async function setSession() {
-  //     const session = await supabase.auth.getSession();
-  //     setUser(session.data.session?.user ?? null);
-  //     setAuth(true);
-  //   }
-  //   setSession();
-  // }, [auth]);
+  useEffect(() => {
+    async function retrieveUser() {
+      if (!auth) {
+        const { data } = await supabase.auth.getUser();
+        const { user: currentUser } = data;
+        setUser(currentUser ?? null);
+        setAuth(true);
+      }
+    }
+    retrieveUser();
+  }, []);
 
   const signOut = () => {
     setUser(null);

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400&display=swap');
+
 .signUp_container {
   width: 100%;
   height: 100vh;
@@ -12,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   width: 300px;
   height: max-content;
   border: 1px solid black;
@@ -24,19 +26,24 @@
 }
 
 .inputsContainer h3 {
+  font-family: 'Cairo', sans-serif;
   text-align: center;
 }
 
 .inputsContainer input {
   width: 75%;
-  height: 30px;
+  padding: 10px 5px;
+  /* height: 35px; */
   /* border-top: none; */
   border-radius: 4px;
   border: 1px solid black;
+  filter: drop-shadow(1px 1px 1px black);
 }
 
 .inputsContainer button {
-  font-size: 15px;
-  background-color: rgb(198, 219, 228);
+  font-size: 16px;
+  border-radius: 0;
+  background-color: pink;
   margin-bottom: 15px;
+  font-family: 'Cairo', sans-serif;
 }

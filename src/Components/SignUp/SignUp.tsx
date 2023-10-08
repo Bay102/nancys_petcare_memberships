@@ -13,7 +13,7 @@ export const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { setUser } = useUserProvider();
+  const { setUser, setAuth } = useUserProvider();
 
   const navigate = useNavigate();
 
@@ -28,9 +28,10 @@ export const SignUp = () => {
 
       const user = await login(email, password);
       setUser(user.user);
-
+      setAuth(true);
       toast.success('Account Created 🐾');
-      navigate('/create/profile');
+
+      navigate('/create_profile');
     } catch (e) {
       console.log(e);
       toast.error(`${e}`);
@@ -42,13 +43,14 @@ export const SignUp = () => {
       <NavBar />
       <div>
         <form className={styles.inputsContainer} onSubmit={handleSubmit}>
-          <h5>New Member</h5>
+          <h3>Create Account</h3>
           <input
             name="email"
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
           <input
             name="password"
@@ -56,6 +58,7 @@ export const SignUp = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <input
             name="confirmPassword"
@@ -63,8 +66,9 @@ export const SignUp = () => {
             placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
+            required
           />
-          <button type="submit">Create Account</button>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     </div>

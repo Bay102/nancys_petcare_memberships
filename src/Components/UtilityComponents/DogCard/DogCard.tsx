@@ -4,9 +4,10 @@ import { useState } from 'react';
 import { createDog } from '../../../Api/create-dog';
 import { toast } from 'react-toastify';
 import styles from './dogCard.module.css';
+import { supabase } from '../../../supabase.config';
 
 export const DogCard = () => {
-  const { user, userData, usersDogs } = useUserProvider();
+  const { user, setUser, setAuth, userData, usersDogs } = useUserProvider();
   const navigate = useNavigate();
   const userDataId = userData?.id;
   const [name, setName] = useState('');
@@ -15,22 +16,28 @@ export const DogCard = () => {
 
   //   const [dogImg, setDogImg] = useState('');
 
-  const addDog = () => {
-    console.log(user);
+  const addDog = async () => {
     try {
-      console.log(userDataId);
+      const { data } = await supabase.auth.getUser();
+      const { user: currentUser } = data;
+      setUser(currentUser ?? null);
+
       if (user) {
+        createDog({ name, breed, age, userDataId });
         setName('');
         setBreed('');
         setAge(0);
-        createDog({ name, breed, age, userDataId });
         toast.success('Dog Added 🐶');
-        window.location.reload();
+        setAuth(true);
       }
     } catch (e) {
       console.log(e);
       toast.error(`${e}`);
     }
+  };
+
+  const completeSignUp = () => {
+    navigate('/dashboard');
   };
 
   return (
@@ -95,7 +102,11 @@ export const DogCard = () => {
               </>
             ))}
         </div>
-        <button className={styles.complete} onClick={() => navigate('/')}>
+        <button
+          className={styles.complete}
+          onClick={() => completeSignUp()}
+          type="button"
+        >
           Complete
         </button>
       </div>

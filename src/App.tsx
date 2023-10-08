@@ -19,11 +19,10 @@ function App() {
           <Routes>
             <Route index path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route path="/admin_dashboard" element={<AdminDashboard />} /> */}
             <Route path="/login" element={<Login />} />
             <Route path="/signUp" element={<SignUp />} />
-            <Route path="/create/profile" element={<CreateProfile />} />
-            <Route path="/add/dogs" element={<DogCard />} />
+            <Route path="/create_profile" element={<CreateProfile />} />
+            <Route path="/add_dogs" element={<DogCard />} />
           </Routes>
           <ToastContainer position="top-center" autoClose={2200} />
         </BrowserRouter>

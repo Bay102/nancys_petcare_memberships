@@ -1,12 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useUserProvider } from '../Providers/User.provider';
-// import Uploader from '../UtilityComponents/Uploader/Uploader';
 import styles from './userProfile.module.css';
-import { CiEdit } from 'react-icons/ci';
+// import { CiEdit } from 'react-icons/ci';
 
 export const UserProfile = () => {
   const { usersDogs, userData } = useUserProvider();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const status =
     userData?.member_status === false ? 'In-active 🚫' : 'Active ✅';
@@ -15,10 +14,10 @@ export const UserProfile = () => {
     <div className={styles.profileContainer}>
       <div className={styles.header}>
         <h3>Profile</h3>
-        <CiEdit
+        {/* <CiEdit
           className={styles.editIcon}
           onClick={() => navigate('/create/profile')}
-        />
+        /> */}
       </div>
       <div className={styles.info}>
         <div className={styles.profilePic}></div>
@@ -40,11 +39,11 @@ export const UserProfile = () => {
             usersDogs.map((dog) => (
               <>
                 <div key={dog.id} className={styles.dogCard}>
-                  <div className={styles.dogPic}></div>
                   <div className={styles.dogInfo}>
+                    <div className={styles.dogPic}></div>
                     <div>{dog.name}</div>
-                    <div>{dog.breed}</div>
                   </div>
+                  <div className={styles.breed}>{dog.breed}</div>
                   <div className={styles.dogAge}>
                     <strong>Age:</strong> {dog.age}
                   </div>
@@ -53,7 +52,6 @@ export const UserProfile = () => {
             ))}
         </div>
       </div>
-      {/* <Uploader /> */}
     </div>
   );
 };

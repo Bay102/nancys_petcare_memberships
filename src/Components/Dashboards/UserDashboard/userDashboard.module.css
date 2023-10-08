@@ -15,9 +15,25 @@
   box-sizing: border-box;
 }
 
+.welcome {
+  background-color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.menu {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.menu li {
+  border: 1px solid black;
+}
+
 .content {
   margin: 10px 16px;
-  /* padding: 24px; */
   min-height: 84vh;
   background: white;
 }

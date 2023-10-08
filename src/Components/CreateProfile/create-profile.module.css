@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400&display=swap');
+
 .container {
   width: 100%;
   max-height: 100%;
@@ -9,12 +11,15 @@
 
 .container h3 {
   text-align: center;
+  font-family: 'Cairo', sans-serif;
 }
 
 .profileContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
   box-sizing: border-box;
   min-width: 275px;
   width: max-content;
@@ -31,30 +36,37 @@
 }
 
 .save {
-  width: 120px;
-  height: 40px;
-  font-size: 14px;
+  font-size: 16px;
+  width: 50%;
+  border-radius: 0;
+  background-color: pink;
+  margin-bottom: 15px;
+  font-family: 'Cairo', sans-serif;
 }
 
 .profilePic {
-  width: 90px;
-  height: 90px;
+  width: 120px;
+  height: 120px;
   border: 1px solid black;
   border-radius: 180px;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .profileInfo {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
+  gap: 15px;
 }
 
 .profileInfo input {
-  width: 180px;
-  height: 30px;
-  border: 1.5px solid pink;
-  border-radius: 5px;
-  margin: auto;
+  width: 95%;
+  padding: 10px 5px;
+  /* height: 35px; */
+  /* border-top: none; */
+  border-radius: 4px;
+  border: 1px solid black;
+  filter: drop-shadow(1px 1px 1px black);
+  /* margin: auto; */
 }
