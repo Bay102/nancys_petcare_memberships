@@ -1,5 +1,5 @@
-import { getAllUsers } from '../../../Api/get-all-users';
-import styles from './admins.module.css';
+import { getAllUsers } from '../../../../Api/get-all-users';
+import styles from './membersList.module.css';
 
 export const MembersList = () => {
   return (

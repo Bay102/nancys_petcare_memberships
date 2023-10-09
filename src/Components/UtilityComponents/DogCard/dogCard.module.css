@@ -33,7 +33,7 @@
   /* flex-direction: column; */
   align-items: center;
   gap: 10px;
-  padding: 5px;
+  padding: 15px;
   justify-content: center;
   border: 2px solid black;
   border-radius: 8px;
@@ -48,13 +48,6 @@
   border: 1px solid black;
 }
 
-.cardContainer button {
-  width: 100px;
-  height: 30px;
-  font-size: 12px;
-  margin: auto;
-}
-
 .dogImg {
   width: 50px;
   height: 50px;
@@ -66,26 +59,31 @@
 .dogAge input {
   width: 40px;
   height: 20px;
-  margin-left: 25px;
+  margin-left: 5px;
   text-align: center;
   font-size: 15px;
 }
 
-.save {
-  margin: auto;
-  background-color: rgb(181, 120, 120);
-  color: white;
+.addDog {
+  background-color: pink;
+  border-radius: 0;
+  color: rgb(7, 6, 6);
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
 }
 
-.save:hover {
+.addDog:hover {
   background-color: white;
   color: black;
 }
 
 .complete {
-  height: 60px;
-  background-color: lightgreen;
-  margin-top: 100px;
+  background-color: pink;
+  border-radius: 0;
+  color: rgb(7, 6, 6);
+  font-family: 'Cairo', sans-serif;
+  font-size: 15px;
+  height: max-content;
 }
 
 .dogsContainer {

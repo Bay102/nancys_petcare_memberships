@@ -28,4 +28,6 @@ export type UserContextTypes = {
   userData: UserDataType | null;
   signOut: any;
   usersDogs: UsersDogs[] | null;
+  fetchDogs: () => Promise<void>;
+  fetchUserData: () => Promise<void>;
 };

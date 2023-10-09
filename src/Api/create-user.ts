@@ -14,4 +14,6 @@ export const createUser = async ({ email, password }: LoginTypes) => {
   if (error) {
     throw new Error(`${error?.message}`);
   }
+
+  return data;
 };

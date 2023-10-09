@@ -15,10 +15,14 @@
   box-sizing: border-box;
 }
 
+.navLogo {
+  width: 30px;
+}
+
 .welcome {
   background-color: white;
   text-align: center;
-  padding: 10px 0;
+  padding: 5px 0;
 }
 
 .menu {

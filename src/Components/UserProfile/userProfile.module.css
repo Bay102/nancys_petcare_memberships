@@ -98,15 +98,13 @@
 .dogsHeader {
   display: flex;
   align-items: center;
+  font-size: 20px;
+  border-bottom: 1px solid black;
   justify-content: space-around;
 }
 
-.dogsHeader button {
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  height: 25px;
-  float: right;
+.addBtn {
+  font-size: 12px;
 }
 
 .cardsContainer {

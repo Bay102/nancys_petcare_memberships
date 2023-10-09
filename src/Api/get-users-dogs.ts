@@ -8,16 +8,21 @@ export type UsersDogs = {
   age: number;
 };
 
-export const getUsersDogs = async (userDataId: string ) => {
-  const { data, error } = await supabase
-    .from('dogs')
-    .select('*')
-    .eq('user_data_id', userDataId);
+export const getUsersDogs = async (userDataId: string | undefined) => {
+  console.log(userDataId);
 
-  if (error) {
-    console.log(error)
-    throw new Error(`${error}`);
+  if (userDataId) {
+    const { data, error } = await supabase
+      .from('dogs')
+      .select('*')
+      .eq('user_data_id', userDataId);
+
+    if (error) {
+      throw new Error(`${error}`);
+    }
+
+    return data;
   }
 
-  return data;
+  console.log('no userDataId');
 };

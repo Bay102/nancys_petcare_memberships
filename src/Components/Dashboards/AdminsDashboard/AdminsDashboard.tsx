@@ -13,7 +13,7 @@ import {
 import { FaUserFriends, FaDog, FaMoneyCheckAlt } from 'react-icons/fa';
 
 import { Layout, Menu, Button, ConfigProvider } from 'antd';
-import { MembersList } from './MembersList';
+import { MembersList } from './MembersList/MembersList';
 import { Schedule } from './Schedule';
 import { useUserProvider } from '../../Providers/User.provider';
 import { useNavigate } from 'react-router-dom';
@@ -40,21 +40,14 @@ export const AdminDashboard = () => {
       }}
     >
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          // className={styles.sider}
-          theme="light"
-          // style={{ backgroundColor: '#f19fce' }}
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed} theme="light">
           {user && (
             <div className={styles.welcome}>
               {/* Welcome Back {userData?.first_name} */}
               <img
                 onClick={() => navigate('/')}
                 className={styles.navLogo}
-                src="./src/assets/Logo.jpeg"
+                src="/Logo.jpeg"
                 alt=""
               />
             </div>

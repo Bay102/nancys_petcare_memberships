@@ -5,38 +5,33 @@ import { useUserProvider } from '../Providers/User.provider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
-import { supabase } from '../../supabase.config';
 
 export const CreateProfile = () => {
-  const { user, setUser, setAuth } = useUserProvider();
+  const { user, userData, setAuth, fetchUserData } = useUserProvider();
   const user_id = user?.id;
+  const user_data_id = userData?.id;
   const navigate = useNavigate();
   const [phone, setPhone] = useState('');
 
   const firstName = useRef<any>(null);
   const lastName = useRef<any>(null);
 
+  console.log(user_data_id);
+
   const submitProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log('test');
 
     try {
-      const { data } = await supabase.auth.getUser();
-      const { user: currentUser } = data;
-      setUser(currentUser ?? null);
-      console.log(user);
-
       if (user) {
-        await saveProfile(
+        saveProfile(
           user_id,
           firstName.current?.value,
           lastName.current?.value,
           phone
         );
-
         setAuth(true);
-        navigate('/add_dogs');
-        toast.success(`Add Your Dogs🐶`);
+        fetchUserData();
+        navigate('/dashboard');
       }
     } catch (e) {
       toast.error(`${e}`);
@@ -87,11 +82,11 @@ export const CreateProfile = () => {
             onChange={handlePhoneNumberChange}
             placeholder="Phone Number"
             value={phone}
-            required
+            // required
           />
         </div>
         <button type="submit" className={styles.save}>
-          Next
+          Complete
         </button>
       </form>
     </div>

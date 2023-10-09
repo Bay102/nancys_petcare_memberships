@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useContext, useEffect, useState } from 'react';
 import { UserContextTypes, UserDataType } from '../../types';
 import { User } from '@supabase/supabase-js';
@@ -16,27 +17,16 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    async function fetchUserData() {
-      if (user && auth) {
-        const usersData = await getUserData(user.id);
-        setUserData(usersData[0]);
-
-        if (usersData[0]?.role === 'admin') {
-          setAdmin(true);
-        }
-
-        if (!admin) {
-          const usersDogs = await getUsersDogs(usersData[0]?.id);
-          setUsersDogs(usersDogs || null);
-        }
-      }
-    }
     fetchUserData();
-  }, [user, admin, auth]);
+  }, [user, auth]);
+
+  useEffect(() => {
+    fetchDogs();
+  }, [userData]);
 
   useEffect(() => {
     async function retrieveUser() {
-      if (!auth) {
+      if (!user) {
         const { data } = await supabase.auth.getUser();
         const { user: currentUser } = data;
         setUser(currentUser ?? null);
@@ -46,20 +36,47 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
     retrieveUser();
   }, []);
 
-  const signOut = () => {
+  const fetchUserData = async () => {
+    if (user) {
+      const usersData = await getUserData(user?.id);
+      setUserData(usersData || null);
+      if (usersData.role === 'admin') {
+        setAdmin(true);
+      }
+    }
+  };
+
+  const fetchDogs = async () => {
+    if (!admin) {
+      const dogsData = await getUsersDogs(userData?.id);
+      setUsersDogs(dogsData || null);
+    }
+  };
+
+  const signOut = async () => {
     setUser(null);
     setAuth(false);
     setUserData(null);
     setUsersDogs(null);
     setAdmin(false);
-    supabase.auth.signOut();
-
+    await supabase.auth.signOut();
     toast.success('Logged Out ✅');
+    console.log(user);
   };
 
   return (
     <UserContext.Provider
-      value={{ admin, setAuth, user, setUser, userData, signOut, usersDogs }}
+      value={{
+        admin,
+        setAuth,
+        user,
+        setUser,
+        userData,
+        signOut,
+        usersDogs,
+        fetchUserData,
+        fetchDogs,
+      }}
     >
       {children}
     </UserContext.Provider>

@@ -13,7 +13,7 @@ export const SignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { setUser, setAuth } = useUserProvider();
+  const { setUser } = useUserProvider();
 
   const navigate = useNavigate();
 
@@ -28,10 +28,9 @@ export const SignUp = () => {
 
       const user = await login(email, password);
       setUser(user.user);
-      setAuth(true);
-      toast.success('Account Created 🐾');
 
       navigate('/create_profile');
+      toast.success('Account Created 🐾');
     } catch (e) {
       console.log(e);
       toast.error(`${e}`);

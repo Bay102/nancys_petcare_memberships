@@ -54,7 +54,13 @@ export const UserDashboard = () => {
           <div className="demo-logo-vertical" />
           {user && (
             <div className={styles.welcome}>
-              Welcome Back, {userData?.first_name}
+              <p>Welcome Back, {userData?.first_name}</p>
+              <img
+                onClick={() => navigate('/')}
+                className={styles.navLogo}
+                src="/Logo.jpeg"
+                alt=""
+              />
             </div>
           )}
           <Menu
