@@ -34,21 +34,23 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  background-color: #4253a7e5;
+  /* background-color: #f7d2f2f8; */
   /* border: 1px solid black; */
-  height: 94%;
+  height: 70vh;
   padding: 10px 10px;
   font-size: 16px;
 }
 
 .menu li {
-  background-color: white;
+  background-color: #c36e93;
   border: 1px solid black;
+  box-shadow: 1px 1px 5px black;
+  color: white;
 }
 
 .content {
   margin: 10px 16px;
-  min-height: 91.45vh;
+  min-height: 81.45vh;
 }
 
 .scheduleContainer {

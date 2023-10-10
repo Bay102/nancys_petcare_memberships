@@ -18,6 +18,7 @@ import { Schedule } from './Schedule';
 import { useUserProvider } from '../../Providers/User.provider';
 import { useNavigate } from 'react-router-dom';
 import Textline from './Textline';
+import { DogsList } from './DogsList/DogsList';
 
 const { Header, Sider, Content } = Layout;
 
@@ -87,6 +88,7 @@ export const AdminDashboard = () => {
                 key: '6',
                 icon: <FaDog />,
                 label: 'My Dogs',
+                onClick: () => setComponent(<DogsList />),
               },
               {
                 key: '7',

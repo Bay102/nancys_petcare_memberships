@@ -4,8 +4,9 @@ import { useUserProvider } from '../../Providers/User.provider';
 import { useRef } from 'react';
 import { createDog } from '../../../Api/create-dog';
 import { toast } from 'react-toastify';
+import { AvatarAnt } from '../Avatar';
 
-export const DogCard = () => {
+export const AddDog = () => {
   const { user, userData, fetchDogs } = useUserProvider();
   const userDataId = userData?.id;
   const name = useRef<any>(null);
@@ -35,7 +36,7 @@ export const DogCard = () => {
   return (
     <div className={styles.createDogsContainer}>
       <form className={styles.cardContainer} onSubmit={addDog}>
-        <div className={styles.dogImg}></div>
+        <AvatarAnt />
         <div className={styles.dogName}>
           <input
             name="dogName"

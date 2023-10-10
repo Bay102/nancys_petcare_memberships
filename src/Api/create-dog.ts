@@ -1,14 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { supabase } from '../supabase.config';
 
 export type Dog = {
-  userDataId?: string;
-  name: unknown;
+  userDataId?: string | undefined;
+  name: any;
   breed: unknown;
   age: unknown;
 };
 
 export const createDog = async (
-  name: unknown,
+  name: any,
   breed: unknown,
   age: unknown,
   userDataId: string | undefined

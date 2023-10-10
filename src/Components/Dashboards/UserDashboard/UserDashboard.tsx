@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 
 import { FaHandHoldingHeart, FaMoneyCheckAlt } from 'react-icons/fa';
+import { GiJumpingDog } from 'react-icons/gi';
 
 import { NPC } from '../../NPC/NPC';
 import { useUserProvider } from '../../Providers/User.provider';
@@ -44,7 +45,7 @@ export const UserDashboard = () => {
         },
       }}
     >
-      <Layout>
+      <Layout style={{ height: '80.5vh' }}>
         <Sider
           trigger={null}
           collapsible
@@ -64,7 +65,7 @@ export const UserDashboard = () => {
             </div>
           )}
           <Menu
-            theme="light"
+            // theme="light"
             mode="inline"
             className={styles.menu}
             defaultSelectedKeys={['3']}
@@ -85,6 +86,11 @@ export const UserDashboard = () => {
                 key: '2',
                 icon: <MessageOutlined />,
                 label: 'Message Nancy',
+              },
+              {
+                key: '7',
+                icon: <GiJumpingDog />,
+                label: 'Services',
               },
               {
                 key: '4',

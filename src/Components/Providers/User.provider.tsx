@@ -37,7 +37,7 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
   }, []);
 
   const fetchUserData = async () => {
-    if (user) {
+    if (user && auth) {
       const usersData = await getUserData(user?.id);
       setUserData(usersData || null);
       if (usersData.role === 'admin') {
