@@ -13,6 +13,7 @@ export type Member = {
   last_name: string;
   phone: number;
   member_status: string;
+  avatarUrl?: string;
   dogs?: Dog[];
 };
 
@@ -45,6 +46,7 @@ export const MembersList = () => {
                 last_name={member.last_name}
                 phone={member.phone}
                 member_status={member.member_status}
+                avatarUrl={member.avatarUrl}
                 dogs={member.dogs}
               />
             ))}

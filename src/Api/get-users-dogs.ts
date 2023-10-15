@@ -1,16 +1,15 @@
 import { supabase } from '../supabase.config';
 
-export type UsersDogs = {
-  userDataId: string;
-  id: number;
+export type DogData = {
+  id: string;
+  user_data_id: string;
   name: string;
   breed: string;
   age: number;
+  dog_pic_url?: string | undefined;
 };
 
 export const getUsersDogs = async (userDataId: string | undefined) => {
-  console.log(userDataId);
-
   if (userDataId) {
     const { data, error } = await supabase
       .from('dogs')
@@ -23,6 +22,4 @@ export const getUsersDogs = async (userDataId: string | undefined) => {
 
     return data;
   }
-
-  console.log('no userDataId');
 };

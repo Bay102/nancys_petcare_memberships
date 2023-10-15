@@ -2,10 +2,12 @@
 import { supabase } from '../supabase.config';
 
 export type Dog = {
-  userDataId?: string | undefined;
+  id: string;
+  user_data_id: string | undefined;
   name: any;
   breed: unknown;
   age: unknown;
+  avatarUrl?: string | null | undefined;
 };
 
 export const createDog = async (

@@ -27,7 +27,7 @@ export const SignUp = () => {
       await createUser({ email, password });
 
       const user = await login(email, password);
-      setUser(user.user);
+      setUser(user.session);
 
       navigate('/create_profile');
       toast.success('Account Created 🐾');
@@ -67,6 +67,7 @@ export const SignUp = () => {
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
+
           <button type="submit">Sign Up</button>
         </form>
       </div>

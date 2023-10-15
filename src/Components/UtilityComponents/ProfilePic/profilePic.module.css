@@ -1,0 +1,33 @@
+.avatar {
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.noImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(10, 10, 10);
+  border-radius: 50px;
+}
+
+.picContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.uploadBtn {
+  color: blue;
+  font-size: 54px;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0;
+}
+
+.uploadBtn:hover {
+  cursor: pointer;
+}

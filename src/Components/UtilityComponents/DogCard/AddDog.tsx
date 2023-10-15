@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import styles from './dogCard.module.css';
 import { useUserProvider } from '../../Providers/User.provider';
-import { useRef } from 'react';
 import { createDog } from '../../../Api/create-dog';
 import { toast } from 'react-toastify';
-import { AvatarAnt } from '../Avatar';
+import { useRef } from 'react';
 
 export const AddDog = () => {
   const { user, userData, fetchDogs } = useUserProvider();
@@ -25,6 +25,10 @@ export const AddDog = () => {
           userDataId
         ).then(() => fetchDogs());
 
+        name.current.value = null;
+        breed.current.value = null;
+        age.current.value = null;
+
         toast.success('Dog Added 🐶');
       }
     } catch (e) {
@@ -36,7 +40,6 @@ export const AddDog = () => {
   return (
     <div className={styles.createDogsContainer}>
       <form className={styles.cardContainer} onSubmit={addDog}>
-        <AvatarAnt />
         <div className={styles.dogName}>
           <input
             name="dogName"

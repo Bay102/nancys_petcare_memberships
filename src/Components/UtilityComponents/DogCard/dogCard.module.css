@@ -29,36 +29,27 @@
 .cardContainer {
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   margin: 20px auto;
-  /* flex-direction: column; */
   align-items: center;
   gap: 10px;
-  padding: 15px;
+  padding: 25px;
   justify-content: center;
-  border: 2px solid black;
   border-radius: 8px;
   width: max-content;
   height: max-content;
 }
 
 .cardContainer input {
-  width: 120px;
-  height: 25px;
+  width: 150px;
+  height: 35px;
   border-radius: 5px;
   border: 1px solid black;
 }
 
-.dogImg {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  border: 1px solid black;
-  border-radius: 180px;
-}
-
 .dogAge input {
-  width: 40px;
-  height: 20px;
+  width: 50px;
+  height: 30px;
   margin-left: 5px;
   text-align: center;
   font-size: 15px;
@@ -66,7 +57,7 @@
 
 .addDog {
   background-color: pink;
-  border-radius: 0;
+  border-radius: 10px;
   color: rgb(7, 6, 6);
   font-family: 'Cairo', sans-serif;
   font-size: 14px;
