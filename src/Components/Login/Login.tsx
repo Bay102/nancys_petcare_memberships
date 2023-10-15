@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUserProvider } from '../Providers/User.provider';
 
 export const Login = () => {
-  const { setUser, setAuth } = useUserProvider();
+  const { setUser } = useUserProvider();
   const navigate = useNavigate();
 
   const email = useRef<any>(null);
@@ -24,10 +24,8 @@ export const Login = () => {
       const user = await login(email.current.value, password.current.value);
 
       if (user) {
-        setUser(user.user);
-        setAuth(true);
+        setUser(user.session);
         toast.success('Welcome Back😁');
-
         navigate('/dashboard');
       }
     } catch (e) {

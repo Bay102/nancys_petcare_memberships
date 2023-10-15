@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import styles from './dogsList.module.css';
 import { getAllDogs } from '../../../../Api/get-all-dogs';
-import { Dog } from '../../../../Api/create-dog';
-import { DogCardAnt } from '../../../UtilityComponents/DogCard/DogCardAnt/DogCard';
+import { DogCardAnt } from '../../../UtilityComponents/DogCard/DogCardAnt/DogCardAnt';
 import { toast } from 'react-toastify';
 import { SearchInput } from '../../../UtilityComponents/SearchInput';
+import { DogData } from '../../../../Api/get-users-dogs';
 
 export const DogsList = () => {
-  const [dogs, setDogs] = useState<Dog[]>();
+  const [dogs, setDogs] = useState<DogData[] | undefined>();
 
   useEffect(() => {
     fetchDogs();
@@ -15,7 +15,7 @@ export const DogsList = () => {
 
   const fetchDogs = async () => {
     await getAllDogs()
-      .then((dogs: Dog[]) => setDogs(dogs))
+      .then((dogs: DogData[]) => setDogs(dogs))
       .catch((e) => toast.error(e));
   };
 
@@ -31,14 +31,7 @@ export const DogsList = () => {
       </div>
       <div className={styles.dogs}>
         {dogs &&
-          dogs.map((dog: Dog, index: number) => (
-            <DogCardAnt
-              key={index}
-              name={dog.name as string}
-              breed={dog.breed as string}
-              age={dog.age as number}
-            />
-          ))}
+          dogs.map((dog: DogData) => <DogCardAnt key={dog.id} dogData={dog} />)}
       </div>
     </div>
   );

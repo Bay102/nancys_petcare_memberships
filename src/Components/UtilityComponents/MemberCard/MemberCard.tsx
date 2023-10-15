@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card } from 'antd';
 import { Member } from '../../Dashboards/AdminsDashboard/MembersList/MembersList';
-import { AvatarAnt } from '../Avatar';
 
 export const MemberCard = ({
   first_name,
   last_name,
   phone,
   member_status,
+  // avatarUrl,
   dogs,
 }: Member) => (
   <Card
@@ -20,7 +20,6 @@ export const MemberCard = ({
       textAlign: 'center',
     }}
   >
-    <AvatarAnt />
     <p>{phone}</p>
     <div>
       Member Status:

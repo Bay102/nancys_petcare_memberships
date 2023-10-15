@@ -5,18 +5,16 @@ import { useUserProvider } from '../Providers/User.provider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
+// import { AddDog } from '../UtilityComponents/DogCard/AddDog';
 
 export const CreateProfile = () => {
-  const { user, userData, setAuth, fetchUserData } = useUserProvider();
-  const user_id = user?.id;
-  const user_data_id = userData?.id;
+  const { user, fetchUserData } = useUserProvider();
+
   const navigate = useNavigate();
   const [phone, setPhone] = useState('');
 
   const firstName = useRef<any>(null);
   const lastName = useRef<any>(null);
-
-  console.log(user_data_id);
 
   const submitProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,13 +22,12 @@ export const CreateProfile = () => {
     try {
       if (user) {
         saveProfile(
-          user_id,
+          user.user.id,
           firstName.current?.value,
           lastName.current?.value,
           phone
-        );
-        setAuth(true);
-        fetchUserData();
+        ).then(() => fetchUserData());
+
         navigate('/dashboard');
       }
     } catch (e) {
@@ -51,15 +48,11 @@ export const CreateProfile = () => {
 
     return `(${areaCode}) ${middlePart}-${lastPart}`;
   };
+
   return (
     <div className={styles.container}>
       <form onSubmit={submitProfile} className={styles.profileContainer}>
         <h3>Create Profile</h3>
-        <div className={styles.profilePicContainer}>
-          <div className={styles.profilePic}></div>
-          {/* <input type="file" name="image" /> */}
-        </div>
-
         <div className={styles.profileInfo}>
           <input
             name="firstName"
@@ -85,6 +78,7 @@ export const CreateProfile = () => {
             // required
           />
         </div>
+
         <button type="submit" className={styles.save}>
           Complete
         </button>

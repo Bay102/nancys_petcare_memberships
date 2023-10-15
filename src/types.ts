@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { User } from '@supabase/supabase-js';
-import { UsersDogs } from './Api/get-users-dogs';
+import { Session } from '@supabase/supabase-js';
+import { DogData } from './Api/get-users-dogs';
 
 export type AppContextTypes = {
   component: string;
@@ -18,16 +18,22 @@ export type UserDataType = {
   member_status?: boolean;
   phone?: string;
   role: 'client' | 'admin';
+  avatar_url?: string | null;
 };
 
 export type UserContextTypes = {
   admin: boolean;
-  setAuth: React.Dispatch<React.SetStateAction<boolean>>;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  user: Session | null;
+  setUser: React.Dispatch<React.SetStateAction<Session | null>>;
   userData: UserDataType | null;
-  signOut: any;
-  usersDogs: UsersDogs[] | null;
+  signOut: () => Promise<void>;
+  usersDogs: DogData[] | null;
   fetchDogs: () => Promise<void>;
   fetchUserData: () => Promise<void>;
+  avatarUrl: string | null | undefined;
+  uploadAvatar: (
+    event: any,
+    avatarUrl: string,
+    SB_table: string
+  ) => Promise<void>;
 };

@@ -1,8 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  ChangeEvent,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { UserContextTypes, UserDataType } from '../../types';
-import { User } from '@supabase/supabase-js';
-import { UsersDogs, getUsersDogs } from '../../Api/get-users-dogs';
+import { Session } from '@supabase/supabase-js';
+import { DogData, getUsersDogs } from '../../Api/get-users-dogs';
 import { supabase } from '../../supabase.config';
 import { toast } from 'react-toastify';
 import { getUserData } from '../../Api/get-user-data';
@@ -10,65 +17,95 @@ import { getUserData } from '../../Api/get-user-data';
 const UserContext = createContext({} as UserContextTypes);
 
 export const UserProvider = ({ children }: { children: JSX.Element }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Session | null>(null);
   const [userData, setUserData] = useState<UserDataType | null>(null);
-  const [usersDogs, setUsersDogs] = useState<UsersDogs[] | null>(null);
+  const [usersDogs, setUsersDogs] = useState<DogData[] | null>(null);
   const [admin, setAdmin] = useState(false);
-  const [auth, setAuth] = useState(false);
+
+  const [, setLoading] = useState(true);
+  const [avatarUrl, setAvatarUrl] = useState(
+    userData ? userData.avatar_url : null
+  );
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session);
+    });
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session);
+    });
+  }, []);
 
   useEffect(() => {
     fetchUserData();
-  }, [user, auth]);
+  }, [user]);
+
+  useEffect(() => {
+    if (userData?.role === 'admin') {
+      setAdmin(true);
+    }
+  }, [userData]);
 
   useEffect(() => {
     fetchDogs();
   }, [userData]);
 
-  useEffect(() => {
-    async function retrieveUser() {
-      if (!user) {
-        const { data } = await supabase.auth.getUser();
-        const { user: currentUser } = data;
-        setUser(currentUser ?? null);
-        setAuth(true);
-      }
-    }
-    retrieveUser();
-  }, []);
-
   const fetchUserData = async () => {
-    if (user && auth) {
-      const usersData = await getUserData(user?.id);
-      setUserData(usersData || null);
-      if (usersData.role === 'admin') {
-        setAdmin(true);
-      }
+    if (user) {
+      await getUserData(user?.user.id).then((data) =>
+        setUserData(data || null)
+      );
     }
   };
 
   const fetchDogs = async () => {
     if (!admin) {
-      const dogsData = await getUsersDogs(userData?.id);
-      setUsersDogs(dogsData || null);
+      try {
+        const dogsData = await getUsersDogs(userData?.id);
+        setUsersDogs(dogsData || null);
+        console.log(usersDogs);
+      } catch (e) {
+        toast.error(`${e}`);
+      }
     }
   };
 
+  async function uploadAvatar(
+    event: ChangeEvent<HTMLInputElement>,
+    avatarUrl: string,
+    SB_table: string
+  ) {
+    event.preventDefault();
+    setLoading(true);
+
+    const { error } = await supabase
+      .from(SB_table)
+      .update({ avatar_url: avatarUrl })
+      .eq('user_id', user?.user.id);
+
+    if (error) {
+      alert(error.message);
+    } else {
+      setAvatarUrl(avatarUrl);
+    }
+    setLoading(false);
+  }
+
   const signOut = async () => {
     setUser(null);
-    setAuth(false);
     setUserData(null);
     setUsersDogs(null);
     setAdmin(false);
+    setAvatarUrl(null);
     await supabase.auth.signOut();
     toast.success('Logged Out ✅');
-    console.log(user);
   };
 
   return (
     <UserContext.Provider
       value={{
         admin,
-        setAuth,
         user,
         setUser,
         userData,
@@ -76,6 +113,8 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
         usersDogs,
         fetchUserData,
         fetchDogs,
+        avatarUrl,
+        uploadAvatar,
       }}
     >
       {children}
