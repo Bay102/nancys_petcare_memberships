@@ -5,15 +5,13 @@ import { Layout, Menu, Button, ConfigProvider } from 'antd';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
   HomeOutlined,
   LogoutOutlined,
   DesktopOutlined,
-  MessageOutlined,
 } from '@ant-design/icons';
 
-import { FaHandHoldingHeart, FaMoneyCheckAlt } from 'react-icons/fa';
+import { FaHandHoldingHeart } from 'react-icons/fa';
 import { GiJumpingDog } from 'react-icons/gi';
 
 import { NPC } from '../../NPC/NPC';
