@@ -42,6 +42,8 @@ export const SignUp = () => {
       <NavBar />
       <div>
         <form className={styles.inputsContainer} onSubmit={handleSubmit}>
+          <img className={styles.logo} src="/npc_logo.svg" alt="" />
+
           <h3>Create Account</h3>
           <input
             name="email"

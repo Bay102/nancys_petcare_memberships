@@ -6,6 +6,7 @@ import { login } from '../../Api/login';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useUserProvider } from '../Providers/User.provider';
+import { resetPassword } from '../../Api/reset-password';
 
 export const Login = () => {
   const { setUser } = useUserProvider();
@@ -34,14 +35,15 @@ export const Login = () => {
   };
 
   return (
-    <div className={styles.loginContainer}>
+    <>
       <NavBar />
-      <div>
+      <div className={styles.loginContainer}>
         <form
           className={styles.inputsContainer}
           action=""
           onSubmit={handleLogin}
         >
+          <img className={styles.logo} src="/npc_logo.svg" alt="" />
           <h3>Sign In</h3>
           <input name="email" type="email" placeholder="Email" ref={email} />
           <input
@@ -50,10 +52,18 @@ export const Login = () => {
             placeholder="Password"
             ref={password}
           />
-          <a className={styles.forgot}>Forgot Password?</a>
-          <button type="submit">Login</button>
+          <button
+            type="button"
+            onClick={() => resetPassword(email.current?.value)}
+            className={styles.forgot}
+          >
+            Reset Password
+          </button>
+          <button type="submit" className={styles.submit}>
+            Login
+          </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };

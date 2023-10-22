@@ -9,27 +9,21 @@
   height: fit-content;
 }
 
-.noImage {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50px;
-}
-
 .picContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: relative;
+  /* height: 200px; */
 }
 
 .uploadBtn {
   color: blue;
-  font-size: 54px;
-  position: absolute;
-  bottom: 0;
+  font-size: 58px;
+  /* position: absolute; */
+  padding: 60px 0;
+  bottom: 20px;
   left: 75%;
 }
 

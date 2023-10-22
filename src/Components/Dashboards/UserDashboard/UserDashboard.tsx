@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import styles from './userDashboard.module.css';
 import { Layout, Menu, Button, ConfigProvider } from 'antd';
@@ -23,7 +24,7 @@ import { UserProfile } from '../../UserProfile/UserProfile';
 const { Header, Sider, Content } = Layout;
 
 export const UserDashboard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [component, setComponent] = useState(<UserProfile />);
 
   const { user, userData, signOut } = useUserProvider();
@@ -46,12 +47,7 @@ export const UserDashboard = () => {
       }}
     >
       <Layout style={{ height: '80.5vh' }}>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          // style={{ backgroundColor: 'white' }}
-        >
+        <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="demo-logo-vertical" />
           {user && (
             <div className={styles.welcome}>
@@ -83,30 +79,30 @@ export const UserDashboard = () => {
                 onClick: () => setComponent(<UserProfile />),
               },
               {
-                key: '2',
-                icon: <MessageOutlined />,
-                label: 'Message Nancy',
-              },
-              {
                 key: '7',
                 icon: <GiJumpingDog />,
                 label: 'Services',
-              },
-              {
-                key: '4',
-                icon: <FaMoneyCheckAlt />,
-                label: 'Pay Now',
-              },
-              {
-                key: '5',
-                icon: <UploadOutlined />,
-                label: 'Invoices',
               },
               {
                 key: '6',
                 icon: <FaHandHoldingHeart />,
                 label: 'Membership',
               },
+              // {
+              //   key: '2',
+              //   icon: <MessageOutlined />,
+              //   label: 'Message Nancy',
+              // },
+              // {
+              //   key: '4',
+              //   icon: <FaMoneyCheckAlt />,
+              //   label: 'Pay Now',
+              // },
+              // {
+              //   key: '5',
+              //   icon: <UploadOutlined />,
+              //   label: 'Invoices',
+              // },
             ]}
           />
         </Sider>

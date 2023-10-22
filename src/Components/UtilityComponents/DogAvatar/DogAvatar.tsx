@@ -7,11 +7,11 @@ import { FcAddImage, FcDownload } from 'react-icons/fc';
 
 type AvatarType = {
   url: string | null | undefined;
-  size: string;
+  size?: string;
   onUpload: any;
 };
 
-export default function DogAvatar({ url, size, onUpload }: AvatarType) {
+export default function DogAvatar({ url, onUpload }: AvatarType) {
   const [avatarUrl, setAvatarUrl] = useState<any>(null);
   const [uploading, setUploading] = useState<any>(false);
 
@@ -69,19 +69,14 @@ export default function DogAvatar({ url, size, onUpload }: AvatarType) {
   return (
     <div className={styles.imageWrapper}>
       {avatarUrl ? (
-        <img
-          src={avatarUrl}
-          alt="Avatar"
-          className={styles.avatar}
-          //  style={{ height: size, width: size }}
-        />
+        <img src={avatarUrl} alt="Avatar" className={styles.avatar} />
       ) : (
-        <div className={styles.noImage} style={{ height: size, width: size }} />
+        <div className={styles.noImage} />
       )}
-      <div className={styles.picContainer} style={{ width: size }}>
+      <div className={styles.picContainer}>
         {!url && (
           <>
-            <label className={styles.uploadBtn} htmlFor="single">
+            <label className={styles.uploadBtn} htmlFor="dogPic">
               {uploading ? <FcDownload /> : <FcAddImage />}
             </label>
 
@@ -91,7 +86,7 @@ export default function DogAvatar({ url, size, onUpload }: AvatarType) {
                 position: 'absolute',
               }}
               type="file"
-              id="single"
+              id="dogPic"
               accept="image/*"
               onChange={uploadAvatar}
               disabled={uploading}

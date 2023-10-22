@@ -64,7 +64,6 @@ export const UserProvider = ({ children }: { children: JSX.Element }) => {
       try {
         const dogsData = await getUsersDogs(userData?.id);
         setUsersDogs(dogsData || null);
-        console.log(usersDogs);
       } catch (e) {
         toast.error(`${e}`);
       }
