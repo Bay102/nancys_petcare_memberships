@@ -39,7 +39,7 @@ export const DogCardAnt = ({ dogData }: CardProps) => {
       cover={
         <DogAvatar
           url={dogData.dog_pic_url}
-          size={'150px'}
+          // size={'150px'}
           onUpload={(event: ChangeEvent<HTMLInputElement>, url: string) => {
             updateUrl(event, url);
           }}

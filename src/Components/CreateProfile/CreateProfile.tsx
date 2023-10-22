@@ -5,7 +5,6 @@ import { useUserProvider } from '../Providers/User.provider';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { saveProfile } from '../../Api/create-user-data';
-// import { AddDog } from '../UtilityComponents/DogCard/AddDog';
 
 export const CreateProfile = () => {
   const { user, fetchUserData } = useUserProvider();

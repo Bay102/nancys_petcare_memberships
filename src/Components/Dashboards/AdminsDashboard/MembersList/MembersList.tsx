@@ -13,7 +13,7 @@ export type Member = {
   last_name: string;
   phone: number;
   member_status: string;
-  avatarUrl?: string;
+  avatar_url?: string;
   dogs?: Dog[];
 };
 
@@ -40,15 +40,7 @@ export const MembersList = () => {
         <div className={styles.members}>
           {members &&
             members.map((member, index) => (
-              <MemberCard
-                key={index}
-                first_name={member.first_name}
-                last_name={member.last_name}
-                phone={member.phone}
-                member_status={member.member_status}
-                avatarUrl={member.avatarUrl}
-                dogs={member.dogs}
-              />
+              <MemberCard key={index} memberData={member} />
             ))}
         </div>
       </div>

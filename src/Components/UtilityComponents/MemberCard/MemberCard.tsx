@@ -2,16 +2,14 @@
 import { Card } from 'antd';
 import { Member } from '../../Dashboards/AdminsDashboard/MembersList/MembersList';
 
-export const MemberCard = ({
-  first_name,
-  last_name,
-  phone,
-  member_status,
-  // avatarUrl,
-  dogs,
-}: Member) => (
+type MemberData = {
+  key: number;
+  memberData: Member;
+};
+
+export const MemberCard = ({ memberData }: MemberData) => (
   <Card
-    title={`${first_name} ${last_name}`}
+    title={`${memberData.first_name} ${memberData.last_name}`}
     bordered={true}
     style={{
       width: 200,
@@ -20,13 +18,12 @@ export const MemberCard = ({
       textAlign: 'center',
     }}
   >
-    <p>{phone}</p>
+    <p>{memberData.phone}</p>
     <div>
       Member Status:
-      {!member_status ? (
+      {!memberData.member_status ? (
         <div>
-          {' '}
-          <strong>IN-ACTIVE</strong>{' '}
+          <strong>IN-ACTIVE</strong>
         </div>
       ) : (
         <div>✅</div>
@@ -35,8 +32,8 @@ export const MemberCard = ({
     <br />
     <div>
       Dogs:
-      {dogs &&
-        dogs.map((dog: any, index: number) => (
+      {memberData.dogs &&
+        memberData.dogs.map((dog: any, index: number) => (
           <div key={index}>{dog.name}</div>
         ))}
     </div>

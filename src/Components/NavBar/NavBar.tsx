@@ -16,12 +16,12 @@ export const NavBar = () => {
     <div className={styles.navContainer}>
       <nav>
         <ul className={styles.navList}>
-          <img
+          {/* <img
             onClick={() => navigate('/')}
             className={styles.navLogo}
             src={'/Logo.jpeg'}
             alt=""
-          />
+          /> */}
           {user && <h4>Welcome Back, {userData?.first_name} </h4>}
           {user && (
             <li>

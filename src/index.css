@@ -32,6 +32,8 @@ body {
   max-height: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
+  /* background-color: #b3dee2; */
+  overflow: hidden;
 }
 
 h1 {
