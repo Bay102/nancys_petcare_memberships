@@ -15,10 +15,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signUp" element={<SignUp />} />
-          <Route path="/create_profile" element={<CreateProfile />} />
+          <Route index path="/dashboard" element={<Dashboard />} />
+          <Route index path="/login" element={<Login />} />
+          <Route index path="/signUp" element={<SignUp />} />
+          <Route index path="/create_profile" element={<CreateProfile />} />
         </Routes>
         <ToastContainer position="top-center" autoClose={2200} />
       </BrowserRouter>
